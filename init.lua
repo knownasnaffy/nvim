@@ -887,20 +887,81 @@ require('lazy').setup({
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
       --  and try some other statusline plugin
-      local statusline = require 'mini.statusline'
+      -- local statusline = require 'mini.statusline'
       -- set use_icons to true if you have a Nerd Font
-      statusline.setup { use_icons = vim.g.have_nerd_font }
+      -- statusline.setup { use_icons = vim.g.have_nerd_font }
 
       -- You can configure sections in the statusline by overriding their
       -- default behavior. For example, here we set the section for
       -- cursor location to LINE:COLUMN
       ---@diagnostic disable-next-line: duplicate-set-field
-      statusline.section_location = function()
-        return '%2l:%-2v'
-      end
+      -- statusline.section_location = function()
+      --   return '%2l:%-2v'
+      -- end
+      --
+      -- ---@diagnostic disable-next-line: duplicate-set-field
+      -- statusline.section_diff = function()
+      --   return { trunc_width = 0 }
+      -- end
+      --
+      -- ---@diagnostic disable-next-line: duplicate-set-field
+      -- statusline.section_git = function()
+      --   return nil
+      -- end
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
+    end,
+  },
+  { -- Statusline (the info strip at the bottom)
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      local statusline_theme = require 'lualine.themes.auto'
+
+      statusline_theme.normal.a.gui = 'bold'
+
+      require('lualine').setup {
+        options = {
+          theme = statusline_theme,
+        },
+        sections = {
+          lualine_a = { 'mode' },
+          lualine_b = {
+            {
+              'filename',
+              file_status = true, -- Displays file status (readonly status, modified status)
+              newfile_status = false, -- Display new file status (new file means no write after created)
+              path = 1, -- 0: Just the filename
+              -- 1: Relative path
+              -- 2: Absolute path
+              -- 3: Absolute path, with tilde as the home directory
+              -- 4: Filename and parent dir, with tilde as the home directory
+
+              shorting_target = 40, -- Shortens path to leave 40 spaces in the window
+              -- for other components. (terrible name, any suggestions?)
+              symbols = {
+                modified = '', -- Text to show when the file is modified.
+                readonly = '', -- Text to show when the file is non-modifiable or readonly.
+                unnamed = '[No Name]', -- Text to show for unnamed buffers.
+                newfile = '[New]', -- Text to show for newly created file before first write
+              },
+            },
+          },
+          lualine_c = { 'diagnostics' },
+          lualine_x = {},
+          lualine_y = { 'filetype' },
+          lualine_z = { 'location' },
+        },
+        inactive_sections = {
+          lualine_a = {},
+          lualine_b = { 'filename' },
+          lualine_c = {},
+          lualine_x = {},
+          lualine_y = { 'location' },
+          lualine_z = {},
+        },
+      }
     end,
   },
   { -- Highlight, edit, and navigate code
