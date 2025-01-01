@@ -662,7 +662,7 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
-        'prettierd', -- Used to format the rest of the code
+        'prettierd', -- Used to format typescript/javascript code
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -888,38 +888,14 @@ require('lazy').setup({
       require('mini.surround').setup()
 
       -- Move any selection in any direction
+      --
+      -- 'v' to enter visual mode and select items
+      -- 'V' to select the whole line
+      -- <M-{h,j,k,l}> to move the stuff around
       require('mini.move').setup()
 
       -- Set up dashboard
       require('mini.starter').setup()
-
-      -- Simple and easy statusline.
-      --  You could remove this setup call if you don't like it,
-      --  and try some other statusline plugin
-      -- local statusline = require 'mini.statusline'
-      -- set use_icons to true if you have a Nerd Font
-      -- statusline.setup { use_icons = vim.g.have_nerd_font }
-
-      -- You can configure sections in the statusline by overriding their
-      -- default behavior. For example, here we set the section for
-      -- cursor location to LINE:COLUMN
-      ---@diagnostic disable-next-line: duplicate-set-field
-      -- statusline.section_location = function()
-      --   return '%2l:%-2v'
-      -- end
-      --
-      -- ---@diagnostic disable-next-line: duplicate-set-field
-      -- statusline.section_diff = function()
-      --   return { trunc_width = 0 }
-      -- end
-      --
-      -- ---@diagnostic disable-next-line: duplicate-set-field
-      -- statusline.section_git = function()
-      --   return nil
-      -- end
-
-      -- ... and there is more!
-      --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
   { -- Statusline (the info strip at the bottom)
