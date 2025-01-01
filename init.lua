@@ -169,8 +169,8 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- Tab management keymaps
 vim.keymap.set('n', '<M-w>w', '<cmd>tabnew<CR>', { desc = 'New Tab' })
 vim.keymap.set('n', '<M-w>q', '<cmd>tabclose<CR>', { desc = 'Close Tab' })
-vim.keymap.set('n', '<M-w>n', '<cmd>tabnext<CR>', { desc = '[N]ext Tab' })
-vim.keymap.set('n', '<M-w>p', '<cmd>tabprevious<CR>', { desc = '[P]revious Tab' })
+vim.keymap.set('n', '<M-w>l', '<cmd>tabnext<CR>', { desc = 'Next Tab' })
+vim.keymap.set('n', '<M-w>h', '<cmd>tabprevious<CR>', { desc = 'Previous Tab' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
