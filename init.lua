@@ -167,10 +167,14 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Tab management keymaps
-vim.keymap.set('n', '<M-w>w', '<cmd>tabnew<CR>', { desc = 'New Tab' })
-vim.keymap.set('n', '<M-w>q', '<cmd>tabclose<CR>', { desc = 'Close Tab' })
-vim.keymap.set('n', '<M-w>l', '<cmd>tabnext<CR>', { desc = 'Next Tab' })
-vim.keymap.set('n', '<M-w>h', '<cmd>tabprevious<CR>', { desc = 'Previous Tab' })
+vim.keymap.set('n', '<M-w>w', '<cmd>tabnew<CR>', { desc = 'Open new tab' })
+vim.keymap.set('n', '<M-w>q', '<cmd>tabclose<CR>', { desc = 'Close current tab' })
+vim.keymap.set('n', '<M-w>l', '<cmd>tabnext<CR>', { desc = 'Go to next tab' })
+vim.keymap.set('n', '<M-w>h', '<cmd>tabprevious<CR>', { desc = 'Go to previous tab' })
+vim.keymap.set('n', '<M-w><M-w>', '<cmd>tabnew<CR>', { desc = 'Open new tab' })
+vim.keymap.set('n', '<M-w><M-q>', '<cmd>bdelete<CR>', { desc = 'Close current tab' })
+vim.keymap.set('n', '<M-w><M-l>', '<cmd>bnext<CR>', { desc = 'Go to next buffer' })
+vim.keymap.set('n', '<M-w><M-h>', '<cmd>bprevious<CR>', { desc = 'Go to previous buffer' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
