@@ -889,6 +889,9 @@ require('lazy').setup({
       -- Move any selection in any direction
       require('mini.move').setup()
 
+      -- Set up dashboard
+      require('mini.starter').setup()
+
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
       --  and try some other statusline plugin
@@ -1018,16 +1021,6 @@ require('lazy').setup({
         },
       }
     end,
-  },
-  { -- Add dashboard
-    'nvimdev/dashboard-nvim',
-    event = 'VimEnter',
-    config = function()
-      require('dashboard').setup {
-        -- config
-      }
-    end,
-    dependencies = { { 'nvim-tree/nvim-web-devicons' } },
   },
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
