@@ -305,6 +305,7 @@ return {
     }
 
     local function on_move(data)
+      ---@diagnostic disable-next-line:undefined-global
       Snacks.rename.on_rename_file(data.source, data.destination)
     end
 
