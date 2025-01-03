@@ -8,11 +8,12 @@ return { -- Statusline and Tabline
 
     require('lualine').setup {
       options = {
-        section_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
+        component_separators = { left = '', right = '' },
         theme = statusline_theme,
       },
       sections = {
-        lualine_a = { 'mode' },
+        lualine_a = { { 'mode', separator = { left = '', right = '' }, right_padding = 2 } },
         lualine_b = {
           {
             'filename',
@@ -53,7 +54,7 @@ return { -- Statusline and Tabline
         },
         lualine_x = { 'diagnostics' },
         lualine_y = { 'filetype' },
-        lualine_z = { 'location' },
+        lualine_z = { { 'location', separator = { left = '', right = '' } } },
       },
       inactive_sections = {
         lualine_a = {},
@@ -67,6 +68,9 @@ return { -- Statusline and Tabline
         lualine_a = {
           {
             'buffers',
+            separator = { left = '', right = '' },
+            right_padding = 2,
+            icons_enabled = false, -- Enables the display of icons alongside the component.
             --   show_filename_only = true, -- Shows shortened relative path when set to false.
             --   hide_filename_extension = false, -- Hide filename extension when set to true.
             --   show_modified_status = true, -- Shows indicator when the buffer is modified.
