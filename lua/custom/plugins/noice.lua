@@ -18,6 +18,15 @@ return {
           event = 'msg_show',
           find = 'Toggling hidden files:',
         },
+        opts = { skip = true },
+      },
+      -- Disable lsp notifications
+      {
+        filter = {
+          event = 'lsp',
+          kind = 'progress',
+        },
+        opts = { skip = true },
       },
     },
     -- Display cmdline popup below prompt
