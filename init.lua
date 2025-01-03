@@ -946,6 +946,7 @@ require('lazy').setup({
         'markdown',
         'markdown_inline',
         'query',
+        'regex',
         'typescript',
         'tsx',
         'vim',
