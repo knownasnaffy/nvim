@@ -1,0 +1,94 @@
+This mode is currently in a beta and subject to change. Feedback by opening an issue is appreciated.
+
+To generate these stats, a total of 137 Events has been parsed. (One task done is rougly two events).
+
+You started a total of 67 Tasks with 43 types. 
+
+You started a total of 3 Sessions.
+You started 43 unique tasks, which is a percentage of 79% of all the 54 available.
+These are all the tasks you finished sorted by percentage of success:
+Moveo: 100%
+AppendChar: 100%
+Paste: 100%
+YankEndOfLine: 100%
+Movet: 100%
+paste: 100%
+MoveStartOfLine: 100%
+InsertChar: 100%
+DeleteLine: 100%
+YankWord: 100%
+MoveMatch: 100%
+JoinLines: 66.666666666667%
+MoveWORDStart: 50%
+MoveT: 50%
+SearchForward: 50%
+YankF: 50%
+SearchBackward: 33.333333333333%
+DeleteF: 33.333333333333%
+MoveStartOfFile: 0%
+YankWORD: 0%
+MoveWordEnd: 0%
+MoveLinesUp: 0%
+ChangeWord: 0%
+MoveWORDEnd: 0%
+MoveEndOfFile: 0%
+MoveF: 0%
+MoveWORD: 0%
+YankT: 0%
+MoveCharsRight: 0%
+YankIntoRegister: 0%
+DeleteWORD: 0%
+MoveCharsLeft: 0%
+Yankt: 0%
+YankInsideMatch: 0%
+MoveWord: 0%
+SearchWordForward: 0%
+SearchWordBackward: 0%
+DeleteChar: 0%
+DeleteT: 0%
+Deletef: 0%
+MoveO: 0%
+MoveWordStart: 0%
+These are how often you finished the tasks you started:
+DeleteF: 3
+SearchWordBackward: 3
+JoinLines: 3
+YankWORD: 3
+SearchBackward: 3
+SearchForward: 2
+Moveo: 2
+MoveO: 2
+MoveWORDEnd: 2
+Deletef: 2
+MoveWORDStart: 2
+MoveT: 2
+YankF: 2
+AppendChar: 2
+MoveWORD: 2
+YankIntoRegister: 2
+Yankt: 2
+MoveWordStart: 1
+MoveStartOfFile: 1
+MoveStartOfLine: 1
+Movet: 1
+ChangeWord: 1
+MoveWord: 1
+MoveWordEnd: 1
+MoveCharsLeft: 1
+DeleteChar: 1
+DeleteLine: 1
+Paste: 1
+MoveEndOfFile: 1
+YankWord: 1
+MoveF: 1
+MoveMatch: 1
+MoveLinesUp: 1
+paste: 1
+YankT: 1
+InsertChar: 1
+DeleteT: 1
+YankInsideMatch: 1
+SearchWordForward: 1
+DeleteWORD: 1
+YankEndOfLine: 1
+MoveCharsRight: 1
