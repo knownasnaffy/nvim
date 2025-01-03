@@ -176,6 +176,8 @@ vim.keymap.set('n', '<M-w>h', '<cmd>tabprevious<CR>', { desc = 'Go to previous t
 vim.keymap.set('n', '<M-w><M-w>', '<cmd>tabnew<CR>', { desc = 'Open new tab' })
 vim.keymap.set('n', '<M-w><M-q>', '<cmd>bdelete<CR>', { desc = 'Close current tab' })
 vim.keymap.set('n', '<M-w><M-l>', '<cmd>bnext<CR>', { desc = 'Go to next buffer' })
+vim.keymap.set('n', '<M-w><M-k>', '<cmd>bnext<CR>', { desc = 'Go to next buffer' })
+vim.keymap.set('n', '<M-w><M-j>', '<cmd>bprevious<CR>', { desc = 'Go to previous buffer' })
 vim.keymap.set('n', '<M-w><M-h>', '<cmd>bprevious<CR>', { desc = 'Go to previous buffer' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
