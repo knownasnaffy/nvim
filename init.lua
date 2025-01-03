@@ -1001,6 +1001,11 @@ require('lazy').setup({
       lazy = '💤 ',
     },
   },
+  change_detection = {
+    -- automatically check for config file changes and reload the ui
+    enabled = true,
+    notify = false, -- get a notification when changes are found
+  },
 })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
