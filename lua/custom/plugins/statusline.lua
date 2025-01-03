@@ -11,6 +11,12 @@ return { -- Statusline and Tabline
         section_separators = { left = '', right = '' },
         component_separators = { left = '', right = '' },
         theme = statusline_theme,
+        disabled_filetypes = { -- Filetypes to disable lualine for.
+          statusline = {
+            'neo-tree',
+            'neo-tree-popup',
+          }, -- only ignores the ft for statusline.
+        },
       },
       sections = {
         lualine_a = { { 'mode', separator = { left = '', right = '' }, right_padding = 2 } },
