@@ -52,7 +52,18 @@ return { -- Statusline and Tabline
             -- or nil on failure. count <= 0 won't be displayed.
           },
         },
-        lualine_x = { 'diagnostics' },
+        lualine_x = {
+          { -- Recording status
+            ---@diagnostic disable-next-line:undefined-field
+            require('noice').api.status.mode.get,
+            cond = function()
+              ---@diagnostic disable-next-line:undefined-field
+              return package.loaded['noice'] and require('noice').api.status.mode.has()
+            end,
+            color = { fg = '#ff9e64' },
+          },
+          'diagnostics',
+        },
         lualine_y = { 'filetype' },
         lualine_z = { { 'location', separator = { left = '', right = '' } } },
       },
