@@ -8,9 +8,8 @@
 --  To update plugins you can run
 --    :Lazy update
 --
--- NOTE: Here is where you install your plugins.
 require('lazy').setup({
-  -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
+  -- Plugins from the kickstart config
   { import = 'kickstart.plugins' },
   -- Plugins added on my own
   { import = 'custom.plugins' },
