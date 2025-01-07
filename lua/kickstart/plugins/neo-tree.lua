@@ -1,6 +1,7 @@
 -- Neo-tree is a Neovim plugin to browse the file system
 -- https://github.com/nvim-neo-tree/neo-tree.nvim
 
+-- Git rename
 local function on_move(data)
   ---@diagnostic disable-next-line:undefined-global
   Snacks.rename.on_rename_file(data.source, data.destination)
