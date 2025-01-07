@@ -17,10 +17,24 @@ vim.keymap.set('n', '<M-w><M-w>', '<cmd>tabnew<CR>', { desc = 'Open new tab' })
 vim.keymap.set('n', '<M-w><M-q>', '<cmd>bdelete<CR>', { desc = 'Close current tab' })
 
 -- Buffer management keymaps
-vim.keymap.set('n', '<M-w><M-l>', '<cmd>bnext<CR>', { desc = 'Go to next buffer' })
-vim.keymap.set('n', '<M-w><M-k>', '<cmd>bnext<CR>', { desc = 'Go to next buffer' })
-vim.keymap.set('n', '<M-w><M-j>', '<cmd>bprevious<CR>', { desc = 'Go to previous buffer' })
-vim.keymap.set('n', '<M-w><M-h>', '<cmd>bprevious<CR>', { desc = 'Go to previous buffer' })
+local function buffer_switch(direction)
+  local count = vim.v.count > 0 and vim.v.count or 1
+  vim.cmd((direction == 'next' and 'bnext ' or 'bprevious ') .. count)
+end
+
+vim.keymap.set('n', '<M-w><M-l>', function()
+  buffer_switch 'next'
+end, { desc = 'Go to next buffer' })
+vim.keymap.set('n', '<M-w><M-k>', function()
+  buffer_switch 'next'
+end, { desc = 'Go to next buffer' })
+vim.keymap.set('n', '<M-w><M-j>', function()
+  buffer_switch 'previous'
+end, { desc = 'Go to previous buffer' })
+vim.keymap.set('n', '<M-w><M-h>', function()
+  buffer_switch 'previous'
+end, { desc = 'Go to previous buffer' })
+
 vim.keymap.set('n', '<M-w>9', '<cmd>bl<CR>', { desc = 'Go to last buffer' })
 vim.keymap.set('n', '<M-w>1', '<cmd>bf<CR>', { desc = 'Go to first buffer' })
 
