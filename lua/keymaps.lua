@@ -21,6 +21,8 @@ vim.keymap.set('n', '<M-w><M-l>', '<cmd>bnext<CR>', { desc = 'Go to next buffer'
 vim.keymap.set('n', '<M-w><M-k>', '<cmd>bnext<CR>', { desc = 'Go to next buffer' })
 vim.keymap.set('n', '<M-w><M-j>', '<cmd>bprevious<CR>', { desc = 'Go to previous buffer' })
 vim.keymap.set('n', '<M-w><M-h>', '<cmd>bprevious<CR>', { desc = 'Go to previous buffer' })
+vim.keymap.set('n', '<M-w>9', '<cmd>bl<CR>', { desc = 'Go to last buffer' })
+vim.keymap.set('n', '<M-w>1', '<cmd>bf<CR>', { desc = 'Go to first buffer' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
