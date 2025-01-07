@@ -17,7 +17,7 @@ return {
   },
   cmd = 'Neotree',
   keys = {
-    { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
+    { '<M-e>', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
   },
   opts = {
     close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
@@ -162,16 +162,16 @@ return {
         nowait = true,
       },
       mappings = {
-        ['<space>'] = {
-          'toggle_node',
-          nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
-        },
+        -- ['<space>'] = {
+        --   'toggle_node',
+        --   nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
+        -- },
         ['<2-LeftMouse>'] = 'open',
         ['<cr>'] = 'open',
         ['<esc>'] = 'cancel', -- close preview or floating neo-tree window
-        ['P'] = { 'toggle_preview', config = { use_float = true, use_image_nvim = true } },
+        ['<space>'] = { 'toggle_preview', config = { use_float = true, use_image_nvim = true } },
         -- Read `# Preview Mode` for more information
-        ['l'] = 'focus_preview',
+        ['b'] = 'focus_preview',
         ['S'] = 'open_split',
         ['s'] = 'open_vsplit',
         -- ["S"] = "split_with_window_picker",
@@ -180,7 +180,7 @@ return {
         -- ["<cr>"] = "open_drop",
         -- ["t"] = "open_tab_drop",
         ['w'] = 'open_with_window_picker',
-        --["P"] = "toggle_preview", -- enter preview mode, which shows the current node without focusing
+        -- ["P"] = "toggle_preview", -- enter preview mode, which shows the current node without focusing
         ['C'] = 'close_node',
         -- ['C'] = 'close_all_subnodes',
         ['z'] = 'close_all_nodes',
@@ -211,8 +211,8 @@ return {
         ['q'] = 'close_window',
         ['R'] = 'refresh',
         ['?'] = 'show_help',
-        ['<'] = 'prev_source',
-        ['>'] = 'next_source',
+        ['h'] = 'prev_source',
+        ['l'] = 'next_source',
         ['i'] = 'show_file_details',
       },
     },
@@ -259,7 +259,7 @@ return {
       -- instead of relying on nvim autocmd events.
       window = {
         mappings = {
-          ['\\'] = 'close_window',
+          ['<M-e>'] = 'close_window',
           -- ['<bs>'] = 'navigate_up',
           ['.'] = 'set_root',
           ['H'] = 'toggle_hidden',
@@ -270,7 +270,7 @@ return {
           ['<c-x>'] = 'clear_filter',
           ['[g'] = 'prev_git_modified',
           [']g'] = 'next_git_modified',
-          ['o'] = 'open',
+          ['e'] = 'open',
           -- ['o'] = { 'show_help', nowait = false, config = { title = 'Order by', prefix_key = 'o' } },
           -- ['oc'] = { 'order_by_created', nowait = false },
           -- ['od'] = { 'order_by_diagnostics', nowait = false },
@@ -303,10 +303,9 @@ return {
       window = {
         mappings = {
           ['bd'] = 'buffer_delete',
-          ['\\'] = 'close_window',
+          ['<M-e>'] = 'close_window',
           ['<bs>'] = 'navigate_up',
           ['.'] = 'set_root',
-          -- ['/'] = 'fuzzy_finder',
           ['o'] = { 'show_help', nowait = false, config = { title = 'Order by', prefix_key = 'o' } },
           ['oc'] = { 'order_by_created', nowait = false },
           ['od'] = { 'order_by_diagnostics', nowait = false },
@@ -322,7 +321,7 @@ return {
         position = 'float',
         mappings = {
           ['A'] = 'git_add_all',
-          ['\\'] = 'close_window',
+          ['<M-e>'] = 'close_window',
           ['gu'] = 'git_unstage_file',
           ['ga'] = 'git_add_file',
           ['gr'] = 'git_revert_file',
