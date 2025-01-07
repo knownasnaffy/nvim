@@ -1,6 +1,3 @@
--- Neo-tree is a Neovim plugin to browse the file system
--- https://github.com/nvim-neo-tree/neo-tree.nvim
-
 -- Git rename
 local function on_move(data)
   ---@diagnostic disable-next-line:undefined-global
@@ -144,8 +141,6 @@ return {
         title = function() -- format the text that appears at the top of a popup window
           return 'Neo-tree'
         end,
-        -- you can also specify border here, if you want a different setting from
-        -- the global popup_border_style.
       },
       mapping_options = {
         noremap = true,
@@ -263,8 +258,6 @@ return {
           -- ['<key>'] = function(state, scroll_padding) ... end,
         },
       },
-
-      -- commands = {}, -- Add a custom command or override a global one using the same function name
     },
     git_status = {
       window = {
