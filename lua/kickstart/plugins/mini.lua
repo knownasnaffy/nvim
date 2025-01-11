@@ -21,7 +21,14 @@ return { -- Collection of various small independent plugins/modules
     -- 'v' to enter visual mode and select items
     -- 'V' to select the whole line
     -- <M-{h,j,k,l}> to move the stuff around
-    require('mini.move').setup()
+    require('mini.move').setup {
+      mappings = {
+        left = '',
+        right = '',
+        line_left = '',
+        line_right = '',
+      },
+    }
 
     -- Set up dashboard
     require('mini.starter').setup()
