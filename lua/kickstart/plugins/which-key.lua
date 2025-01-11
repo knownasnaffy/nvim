@@ -45,14 +45,40 @@ return { -- Useful plugin to show you pending keybinds.
 
     -- Document existing key chains
     spec = {
-      { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
-      { '<leader>d', group = '[D]ocument' },
-      { '<leader>r', group = '[R]ename' },
-      { '<leader>s', group = '[S]earch' },
-      { '<leader>w', group = '[W]orkspace' },
-      { '<leader>t', group = '[T]oggle' },
-      { '<leader>x', group = 'Fi[x] Trouble', mode = { 'n', 'v' } },
+      { '<leader>c', group = '[C]ode', mode = { 'n', 'x' }, icon = {
+        icon = '',
+        color = 'purple',
+      } },
+      { '<leader>d', group = '[D]ocument', icon = {
+        icon = '󰈔',
+      } },
+      { '<leader>r', group = '[R]ename', icon = {
+        icon = '󰑕',
+        color = 'blue',
+      } },
+      { '<leader>s', group = '[S]earch', icon = {
+        icon = '',
+        color = 'green',
+      } },
+      { '<leader>w', group = '[W]orkspace', icon = {
+        icon = '󰈢',
+      } },
+      { '<leader>t', group = '[T]oggle', icon = {
+        icon = '󰔡',
+        color = 'yellow',
+      } },
+      { '<leader>x', group = 'Fi[x] Trouble', mode = { 'n', 'v' }, icon = {
+        icon = '󰁨',
+      } },
       { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+      {
+        '<leader>g',
+        group = '[G]it commands',
+        icon = {
+          icon = '󰊢',
+          color = 'orange',
+        },
+      },
     },
   },
 }
