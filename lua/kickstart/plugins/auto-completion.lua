@@ -55,9 +55,9 @@ return { -- Autocompletion
         format = lspkind.cmp_format(),
       },
 
-      view = {
-        entries = 'native', -- can be "custom", "wildmenu" or "native"
-      },
+      -- view = {
+      --   entries = 'native', -- can be "custom", "wildmenu" or "native"
+      -- },
 
       -- For an understanding of why these mappings were
       -- chosen, you will need to read `:help ins-completion`
