@@ -11,7 +11,7 @@ map('n', '<leader>gc', function()
       print 'Commit canceled.'
     end
   end)
-end, { desc = '[G]it [C]ommit with message' })
+end, { desc = '[G]it [C]ommit with message', nowait = false })
 
 map('n', '<leader>ga', function()
   vim.cmd 'G add %'
