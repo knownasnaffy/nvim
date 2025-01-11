@@ -6,6 +6,17 @@ return { -- Statusline and Tabline
 
     statusline_theme.normal.a.gui = 'bold'
 
+    local function diff_source()
+      local gitsigns = vim.b.gitsigns_status_dict
+      if gitsigns then
+        return {
+          added = gitsigns.added,
+          modified = gitsigns.changed,
+          removed = gitsigns.removed,
+        }
+      end
+    end
+
     require('lualine').setup {
       options = {
         section_separators = { left = '', right = '' },
@@ -52,7 +63,7 @@ return { -- Statusline and Tabline
             --   removed = 'LuaLineDiffDelete', -- Changes the diff's removed color you
             -- },
             symbols = { added = ' ', modified = ' ', removed = ' ' }, -- Changes the symbols used by the diff.
-            source = nil, -- A function that works as a data source for diff.
+            source = diff_source, -- A function that works as a data source for diff.
             -- It must return a table as such:
             --   { added = add_count, modified = modified_count, removed = removed_count }
             -- or nil on failure. count <= 0 won't be displayed.
