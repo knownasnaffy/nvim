@@ -79,6 +79,14 @@ return { -- Useful plugin to show you pending keybinds.
           color = 'orange',
         },
       },
+      {
+        '<leader>b',
+        group = 'Manage [B]uffers',
+        icon = {
+          icon = '󰓩',
+          color = 'blue',
+        },
+      },
     },
   },
 }

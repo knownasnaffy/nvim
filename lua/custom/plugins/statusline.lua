@@ -93,6 +93,36 @@ return { -- Statusline and Tabline
         lualine_y = { 'location' },
         lualine_z = {},
       },
+      tabline = {
+        lualine_a = {},
+        lualine_b = {
+          {
+            'buffers',
+            max_length = vim.o.columns, -- Maximum width of buffers component,
+            -- it can also be a function that returns
+            -- the value of `max_length` dynamically.
+            filetype_names = {
+              TelescopePrompt = 'Telescope',
+              dashboard = 'Dashboard',
+              ['neo-tree-popup'] = 'Neo Tree',
+            }, -- Shows specific buffer name for that filetype ( { `filetype` = `buffer_name`, ... } )
+            buffers_color = {
+              -- Same values as the general color option can be used here.
+              active = 'lualine_a_normal', -- Color for active buffer.
+              inactive = 'lualine_b_normal', -- Color for inactive buffer.
+            },
+            symbols = {
+              modified = ' ●', -- Text to show when the buffer is modified
+              alternate_file = '', -- Text to show to identify the alternate file
+              directory = '', -- Text to show when the buffer is a directory
+            },
+          },
+        },
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = { '%{strftime("%H:%M")}' },
+        lualine_z = { 'tabs' },
+      },
     }
   end,
 }
