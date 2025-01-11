@@ -19,7 +19,7 @@ return { -- Statusline and Tabline
         },
       },
       sections = {
-        lualine_a = { { 'mode', separator = { left = '', right = '' }, right_padding = 2 } },
+        lualine_a = { 'mode' },
         lualine_b = {
           {
             'filename',
