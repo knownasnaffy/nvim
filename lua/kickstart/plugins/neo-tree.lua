@@ -77,7 +77,7 @@ return {
     },
     default_component_configs = {
       modified = {
-        symbol = '',
+        solidsymbol = '',
         highlight = 'NeoTreeModified',
       },
       name = {
@@ -135,11 +135,11 @@ return {
       popup = { -- settings that apply to float position only
         size = {
           height = '80%',
-          width = '30%',
+          width = '50',
         },
         position = '50%', -- 50% means center it
-        title = function() -- format the text that appears at the top of a popup window
-          return 'Neo-tree'
+        title = function(state) -- format the text that appears at the top of a popup window
+          return 'Neo-tree asd ' .. state.name:gsub('^%l', string.upper)
         end,
       },
       mapping_options = {
