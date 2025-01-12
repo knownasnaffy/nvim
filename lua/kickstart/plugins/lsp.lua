@@ -207,6 +207,7 @@ return {
     vim.list_extend(ensure_installed, {
       'stylua', -- Used to format Lua code
       'prettierd', -- Used to format typescript/javascript code
+      'beautysh', -- For shell files
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
