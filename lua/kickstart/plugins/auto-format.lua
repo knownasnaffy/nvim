@@ -12,6 +12,9 @@ return { -- Autoformat
       desc = '[F]ormat buffer',
     },
   },
+  -- This will provide type hinting with LuaLS
+  ---@module "conform"
+  ---@type conform.setupOpts
   opts = {
     format_on_save = function(bufnr)
       -- Disable "format_on_save lsp_fallback" for languages that don't
@@ -23,6 +26,15 @@ return { -- Autoformat
         lsp_format_opt = 'never'
       else
         lsp_format_opt = 'fallback'
+      end
+      -- Disable with a global or buffer-local variable
+      if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+        return
+      end
+      -- Disable autoformat for files in a certain path
+      local bufname = vim.api.nvim_buf_get_name(bufnr)
+      if bufname:match '/node_modules/' then
+        return
       end
       return {
         timeout_ms = 500,
@@ -39,8 +51,9 @@ return { -- Autoformat
       -- python = { "isort", "black" },
       --
       -- You can use 'stop_after_first' to run the first available formatter from the list
-      javascript = { 'prettierd' },
-      typescript = { 'prettierd' },
+      javascript = { 'prettier' },
+      typescript = { 'prettier' },
+      tsx = { 'prettier' },
       sh = { 'beautysh' },
     },
   },
