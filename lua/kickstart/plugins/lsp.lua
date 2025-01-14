@@ -177,6 +177,8 @@ return {
       -- Tailwindcss
       tailwindcss = {},
 
+      pyright = {},
+
       lua_ls = {
         -- cmd = { ... },
         -- filetypes = { ... },
