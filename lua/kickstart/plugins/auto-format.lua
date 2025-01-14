@@ -1,60 +1,74 @@
 return { -- Autoformat
-  'stevearc/conform.nvim',
-  event = { 'BufWritePre' },
-  cmd = { 'ConformInfo' },
-  keys = {
-    {
-      '<leader>f',
-      function()
-        require('conform').format { async = true, lsp_format = 'fallback' }
-      end,
-      mode = '',
-      desc = '[F]ormat buffer',
-    },
-  },
-  -- This will provide type hinting with LuaLS
-  ---@module "conform"
-  ---@type conform.setupOpts
-  opts = {
-    format_on_save = function(bufnr)
-      -- Disable "format_on_save lsp_fallback" for languages that don't
-      -- have a well standardized coding style. You can add additional
-      -- languages here or re-enable it for the disabled ones.
-      local disable_filetypes = { c = true, cpp = true }
-      local lsp_format_opt
-      if disable_filetypes[vim.bo[bufnr].filetype] then
-        lsp_format_opt = 'never'
-      else
-        lsp_format_opt = 'fallback'
-      end
-      -- Disable with a global or buffer-local variable
-      if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-        return
-      end
-      -- Disable autoformat for files in a certain path
-      local bufname = vim.api.nvim_buf_get_name(bufnr)
-      if bufname:match '/node_modules/' then
-        return
-      end
-      return {
-        timeout_ms = 500,
-        lsp_format = lsp_format_opt,
-      }
-    end,
-    -- Conform will notify you when a formatter errors
-    notify_on_error = false,
-    -- Conform will notify you when no formatters are available for the buffer
-    notify_no_formatters = true,
-    formatters_by_ft = {
-      lua = { 'stylua' },
-      -- Conform can also run multiple formatters sequentially
-      -- python = { "isort", "black" },
-      --
-      -- You can use 'stop_after_first' to run the first available formatter from the list
-      javascript = { 'prettier' },
-      typescript = { 'prettier' },
-      tsx = { 'prettier' },
-      sh = { 'beautysh' },
-    },
-  },
+  'mhartington/formatter.nvim',
+  config = function()
+    -- Utilities for creating configurations
+    -- local util = require 'formatter.util'
+
+    -- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
+    require('formatter').setup {
+      -- Enable or disable logging
+      logging = true,
+      -- Set the log level
+      log_level = vim.log.levels.WARN,
+      -- All formatter configurations are opt-in
+      filetype = {
+        -- Formatter configurations for filetype "lua" go here
+        -- and will be executed in order
+
+        lua = {
+          -- "formatter.filetypes.lua" defines default configurations for the
+          -- "lua" filetype
+          require('formatter.filetypes.lua').stylua,
+
+          -- You can also define your own configuration
+          -- function()
+          --   -- Supports conditional formatting
+          --   if util.get_current_buffer_file_name() == 'special.lua' then
+          --     return nil
+          --   end
+          --
+          --   -- Full specification of configurations is down below and in Vim help
+          --   -- files
+          --   return {
+          --     exe = 'stylua',
+          --     args = {
+          --       '--search-parent-directories',
+          --       '--stdin-filepath',
+          --       util.escape_path(util.get_current_buffer_file_path()),
+          --       '--',
+          --       '-',
+          --     },
+          --     stdin = true,
+          --   }
+          -- end,
+        },
+
+        javascriptreact = {
+          require 'formatter.defaults.prettier',
+        },
+        javascript = {
+          require 'formatter.defaults.prettier',
+        },
+        typescript = {
+          require 'formatter.defaults.prettier',
+        },
+        typescriptreact = {
+          require 'formatter.defaults.prettier',
+        },
+        -- Use the special "*" filetype for defining formatter configurations on
+        -- any filetype
+        ['*'] = {
+          -- "formatter.filetypes.any" defines default configurations for any
+          -- filetype
+          require('formatter.filetypes.any').remove_trailing_whitespace,
+          -- Remove trailing whitespace without 'sed'
+          -- require("formatter.filetypes.any").substitute_trailing_whitespace,
+        },
+      },
+    }
+    vim.api.nvim_create_autocmd('BufWritePost', {
+      pattern = '*', -- Apply to all file types, or specify a pattern like "*.lua"
+      command = 'FormatWrite',
+    })
+  end,
 }
