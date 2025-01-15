@@ -70,5 +70,6 @@ return { -- Autoformat
       pattern = '*', -- Apply to all file types, or specify a pattern like "*.lua"
       command = 'FormatWrite',
     })
+    vim.keymap.set('n', '<leader>f', '<Cmd>Format<CR>', { desc = '[F]ormat buffer' })
   end,
 }
