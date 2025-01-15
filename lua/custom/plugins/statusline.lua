@@ -17,6 +17,46 @@ return { -- Statusline and Tabline
       end
     end
 
+    local function battery_status()
+      local handle = io.popen 'acpi -b'
+      if not handle then
+        return '' -- Default icon for unavailable status
+      end
+
+      local result = handle:read '*a'
+      handle:close()
+
+      -- Extract battery percentage and status
+      local percentage = tonumber(result:match '(%d?%d?%d)%%')
+      local status = result:match 'Battery %d+: ([%a%s]+),' or 'Unknown'
+
+      if not percentage then
+        return '' -- Default fallback
+      end
+      local discharging = status:lower():find 'discharging'
+
+      local icon
+      if percentage < 20 then
+        icon = discharging and ' 󰚥 ' or '  ' -- Warning icon for low battery
+      elseif percentage >= 20 and percentage < 40 then
+        icon = discharging and '  ' or '  ' -- Low battery icon
+      elseif percentage >= 40 and percentage < 60 then
+        icon = discharging and '  ' or '  ' -- Mid-level battery icon
+      elseif percentage >= 60 and percentage < 80 then
+        icon = discharging and '  ' or '  ' -- High battery icon
+      elseif percentage >= 80 and percentage <= 100 then
+        icon = discharging and '  ' or ' 󰚦 ' -- Full battery icon
+      else
+        icon = ' ' -- Default fallback icon
+      end
+
+      return icon
+    end
+
+    local tabline_section_y = function() -- Make separator `\` color same as section color
+      return battery_status() .. '\\ %{strftime("%H:%M")}'
+    end
+
     require('lualine').setup {
       options = {
         section_separators = { left = '', right = '' },
@@ -120,7 +160,14 @@ return { -- Statusline and Tabline
         },
         lualine_c = {},
         lualine_x = {},
-        lualine_y = { '%{strftime("%H:%M")}' },
+        lualine_y = {
+          {
+            tabline_section_y,
+            color = {
+              fg = require('lualine.themes.auto').normal.b.fg, -- Disables color change on mode change
+            },
+          },
+        },
         lualine_z = { 'tabs' },
       },
     }
