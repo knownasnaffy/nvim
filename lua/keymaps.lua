@@ -3,6 +3,8 @@
 
 local map = vim.keymap.set
 
+map('n', '<M-s>', '<Cmd>w<CR>')
+
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 map('n', '<Esc>', '<cmd>nohlsearch<CR>')
