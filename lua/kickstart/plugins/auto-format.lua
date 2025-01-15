@@ -55,6 +55,12 @@ return { -- Autoformat
         typescriptreact = {
           require 'formatter.defaults.prettier',
         },
+        json = {
+          require('formatter.filetypes.json').prettier,
+        },
+        css = {
+          require('formatter.filetypes.css').prettier,
+        },
         -- Use the special "*" filetype for defining formatter configurations on
         -- any filetype
         ['*'] = {
