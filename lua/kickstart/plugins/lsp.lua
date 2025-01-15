@@ -179,6 +179,16 @@ return {
 
       pyright = {},
 
+      cssls = {
+        settings = {
+          css = {
+            lint = {
+              unknownAtRules = 'ignore',
+            },
+          },
+        },
+      },
+
       lua_ls = {
         -- cmd = { ... },
         -- filetypes = { ... },
