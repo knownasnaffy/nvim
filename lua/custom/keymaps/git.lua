@@ -43,12 +43,12 @@ map('n', '<leader>gd', function()
   end)
 end, { desc = '[G]it [D]iscard changes in current file' })
 
-map('n', '<leader>gp', function()
+map('n', '<leader>gP', function()
   vim.cmd 'G pull'
   print 'Pulled changes from remote.'
 end, { desc = '[G]it [P]ull changes from remote' })
 
-map('n', '<leader>gP', function()
+map('n', '<leader>gp', function()
   vim.cmd 'G push'
   print 'Pushed changes to remote.'
 end, { desc = '[G]it [P]ush changes to remote' })
