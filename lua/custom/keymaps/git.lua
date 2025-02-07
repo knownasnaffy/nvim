@@ -13,6 +13,11 @@ map('n', '<leader>gc', function()
   end)
 end, { desc = 'Git [C]ommit with message', nowait = false })
 
+map('n', '<leader>gC', function()
+  vim.cmd 'G commit --amend --no-edit'
+  print 'Amended last commit (without changing message).'
+end, { desc = 'Git [C]ommit amend last' })
+
 map('n', '<leader>ga', function()
   vim.cmd 'G add %'
   print('File staged: ' .. vim.fn.expand '%')
