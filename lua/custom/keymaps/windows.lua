@@ -1,8 +1,32 @@
 local map = vim.keymap.set
 
 --  See `:help wincmd` for a list of all window commands
-map('n', '<leader>wh', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-map('n', '<leader>wl', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-map('n', '<leader>wj', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-map('n', '<leader>wk', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
-map('n', '<leader>wq', '<C-w>q', { desc = 'Close current window window' })
+--
+--  Switching between windows
+map('n', '<leader>wh', '<C-w>h', { desc = 'Move focus to the left window' })
+map('n', '<leader>wl', '<C-w>l', { desc = 'Move focus to the right window' })
+map('n', '<leader>wj', '<C-w>j', { desc = 'Move focus to the lower window' })
+map('n', '<leader>wk', '<C-w>k', { desc = 'Move focus to the upper window' })
+map('n', '<leader>ww', '<C-w>w', { desc = 'Switch window' })
+
+-- Resizing
+map('n', '<leader>w+', '<C-w>+', { desc = 'Increase window height' })
+map('n', '<leader>w-', '<C-w>-', { desc = 'Decrease window height' })
+map('n', '<leader>w>', '<C-w>>', { desc = 'Increase window width' })
+map('n', '<leader>w<', '<C-w><', { desc = 'Decrease window width' })
+
+-- Managing splits
+map('n', '<leader>ws', '<C-w>s', { desc = 'Split window horizontally' })
+map('n', '<leader>wv', '<C-w>v', { desc = 'Split window vertically' })
+map('n', '<leader>wm', '<C-w>| <C-w>_', { desc = 'Maximize window' })
+map('n', '<leader>wr', '<C-w>=', { desc = 'Reset window sizes' })
+
+map('n', '<leader>wH', '<C-w>H', { desc = 'Move current window to the left' })
+map('n', '<leader>wL', '<C-w>L', { desc = 'Move current window to the right' })
+map('n', '<leader>wJ', '<C-w>J', { desc = 'Move current window to the bottom' })
+map('n', '<leader>wK', '<C-w>K', { desc = 'Move current window to the top' })
+
+-- Closing windows
+map('n', '<leader>wq', '<C-w>q', { desc = 'Close current window' })
+map('n', '<leader>woq', '<C-w>o', { desc = 'Close other windows' })
+map('n', '<leader>waq', '<Cmd>qa<CR>', { desc = 'Close all windows' })
