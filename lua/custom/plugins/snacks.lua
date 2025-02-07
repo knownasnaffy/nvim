@@ -1,7 +1,31 @@
+---@diagnostic disable: undefined-global
 return {
   'folke/snacks.nvim',
   priority = 1000,
   lazy = false,
+  keys = {
+    {
+      '<M-`>',
+      function()
+        Snacks.terminal.toggle()
+      end,
+      desc = 'Toggle terminal',
+    },
+    {
+      '<leader>gb',
+      function()
+        Snacks.gitbrowse()
+      end,
+      desc = '[B]rowser file in git remote',
+    },
+    {
+      '<M-q>',
+      function()
+        Snacks.bufdelete()
+      end,
+      desc = 'Delete current buffer',
+    },
+  },
   ---@type snacks.Config
   opts = {
     -- your configuration comes here

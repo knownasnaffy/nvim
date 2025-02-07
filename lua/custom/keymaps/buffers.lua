@@ -24,7 +24,7 @@ end, { desc = 'Go to previous buffer' })
 -- map('n', '<A-S-.>', '<Cmd>BufferMoveNext<CR>')
 
 -- Close buffer
-map('n', '<A-q>', '<Cmd>bd<CR>')
+-- map('n', '<A-q>', '<Cmd>bd<CR>')
 
 -- Goto buffer in position...
 map('n', '<A-1>', '<Cmd>bf<CR>')
