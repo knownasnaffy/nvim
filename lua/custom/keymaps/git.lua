@@ -2,15 +2,12 @@ local map = vim.keymap.set
 
 map('n', '<leader>gc', function()
   -- Prompt for the commit message
-  vim.ui.input({ prompt = 'Enter commit message: ' }, function(input)
-    if input then
-      -- Execute the Git commit command with the message
-      vim.cmd('G commit -m ' .. vim.fn.shellescape(input))
-    else
-      -- Handle case when input is nil (e.g., user cancels the prompt)
-      print 'Commit canceled.'
-    end
-  end)
+  local message = vim.fn.input 'Enter commit message: '
+  if message ~= '' then
+    vim.cmd('G commit -m ' .. vim.fn.shellescape(message))
+  else
+    print 'Commit canceled.'
+  end
 end, { desc = 'Git [C]ommit with message', nowait = false })
 
 map('n', '<leader>gC', function()
