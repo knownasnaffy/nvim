@@ -15,12 +15,6 @@ map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]ui
 -- Git keymaps
 require 'custom.keymaps.git'
 
--- Tab management keymaps
-map('n', '<M-w>w', '<cmd>tabnew<CR>', { desc = 'Open new tab' })
-map('n', '<M-w>q', '<cmd>tabclose<CR>', { desc = 'Close current tab' })
-map('n', '<M-w>l', '<cmd>tabnext<CR>', { desc = 'Go to next tab' })
-map('n', '<M-w>h', '<cmd>tabprevious<CR>', { desc = 'Go to previous tab' })
-
 -- Buffer management keymaps
 require 'custom.keymaps.buffers'
 
