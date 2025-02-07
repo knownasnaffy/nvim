@@ -65,3 +65,8 @@ end, { desc = 'Git [D]iff current file' })
 map('n', '<leader>gm', function()
   vim.cmd 'G mergetool'
 end, { desc = 'Git [M]ergetool for conflicts' })
+
+map('n', '<leader>gl', function()
+  vim.cmd 'G log --oneline --graph --decorate --all'
+end, { desc = 'Git [L]og (compact)' })
+
