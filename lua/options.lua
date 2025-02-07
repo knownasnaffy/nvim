@@ -25,6 +25,8 @@ vim.schedule(function()
   vim.opt.clipboard = 'unnamedplus'
 end)
 
+-- Wrap at word boundaries
+vim.opt.linebreak = true
 -- Enable break indent
 vim.opt.breakindent = true
 

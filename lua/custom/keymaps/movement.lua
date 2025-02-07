@@ -11,3 +11,9 @@ map('n', '<M-d>', '<C-d>')
 map('n', '<M-f>', '<C-f>')
 map('n', '<M-u>', '<C-u>')
 map('n', '<M-b>', '<C-b>')
+
+-- Movement between wrapped lines
+map('n', 'j', 'gj', { desc = 'Move down by display line' })
+map('n', 'k', 'gk', { desc = 'Move up by display line' })
+map('n', '0', 'g0', { desc = 'Move to beginning of display line' })
+map('n', '$', 'g$', { desc = 'Move to end of display line' })
