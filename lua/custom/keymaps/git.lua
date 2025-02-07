@@ -70,3 +70,5 @@ map('n', '<leader>gl', function()
   vim.cmd 'G log --oneline --graph --decorate --all'
 end, { desc = 'Git [L]og (compact)' })
 
+map('n', ']x', '/^<<<<<<<\\|=======\\|>>>>>>>\\n', { desc = 'Next merge conflict' })
+map('n', '[x', '?^<<<<<<<\\|=======\\|>>>>>>>\\n', { desc = 'Previous merge conflict' })
