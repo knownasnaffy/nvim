@@ -19,7 +19,7 @@ map('n', '<leader>gC', function()
 end, { desc = 'Git [C]ommit amend last' })
 
 map('n', '<leader>ga', function()
-  vim.cmd 'G add %'
+  vim.cmd 'silent! G add %'
   print('File staged: ' .. vim.fn.expand '%')
 end, { desc = 'Git [A]dd current file' })
 
@@ -28,12 +28,12 @@ map('n', '<leader>gs', function()
 end, { desc = 'Git [S]tatus' })
 
 map('n', '<leader>gA', function()
-  vim.cmd 'G add .'
+  vim.cmd 'silent! G add .'
   print 'All changes staged.'
 end, { desc = 'Git stage [A]ll changes' })
 
 map('n', '<leader>gu', function()
-  vim.cmd 'G reset %'
+  vim.cmd 'silent! G reset %'
   print('Changes unstaged: ' .. vim.fn.expand '%')
 end, { desc = 'Git [U]nstage current file' })
 
