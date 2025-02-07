@@ -26,11 +26,7 @@ require 'custom.keymaps.buffers'
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<M-q>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
--- TIP: Disable arrow keys in normal mode
-map('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
-map('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
-map('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
-map('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+require 'custom.keymaps.movement'
 
 -- Keybinds to make split navigation easier.
 require 'custom.keymaps.windows'
