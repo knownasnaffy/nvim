@@ -17,7 +17,7 @@ return {
       function()
         Snacks.gitbrowse()
       end,
-      desc = '[B]rowser file in git remote',
+      desc = '[B]rowse file in git remote',
     },
     {
       '<M-q>',
