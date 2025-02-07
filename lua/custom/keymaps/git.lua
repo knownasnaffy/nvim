@@ -40,7 +40,7 @@ end, { desc = 'Git [U]nstage current file' })
 map('n', '<leader>gd', function()
   vim.ui.input({ prompt = 'Discard changes in current file? (y/n): ' }, function(input)
     if input and input:lower() == 'y' then
-      vim.cmd 'G checkout %'
+      vim.cmd 'G read'
       print('Changes discarded: ' .. vim.fn.expand '%')
     else
       print 'Discard canceled.'
