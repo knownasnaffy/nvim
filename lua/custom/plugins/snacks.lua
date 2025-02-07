@@ -10,6 +10,7 @@ return {
         Snacks.terminal.toggle()
       end,
       desc = 'Toggle terminal',
+      mode = {'n', 't'}
     },
     {
       '<leader>gb',
