@@ -60,8 +60,8 @@ return { -- Useful plugin to show you pending keybinds.
         icon = '',
         color = 'green',
       } },
-      { '<leader>w', group = '[W]orkspace', icon = {
-        icon = '󰈢',
+      { '<leader>w', group = '[W]indow Management', icon = {
+        icon = '',
       } },
       { '<leader>t', group = '[T]oggle', icon = {
         icon = '󰔡',
