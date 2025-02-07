@@ -22,15 +22,7 @@ return { -- Collection of various small independent plugins/modules
     -- 'V' to select the whole line
     -- <M-{h,j,k,l}> to move the stuff around
     require('mini.move').setup {
-      mappings = {
-        -- left = '',
-        -- right = '',
-        -- line_left = '',
-        -- line_right = '',
-      },
+      mappings = {},
     }
-
-    -- Set up dashboard
-    -- require('mini.starter').setup()
   end,
 }
