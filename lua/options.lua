@@ -30,6 +30,18 @@ vim.opt.linebreak = true
 -- Enable break indent
 vim.opt.breakindent = true
 
+-- Fold
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.opt.foldlevelstart = 99
+vim.opt.foldtext = 'v:lua.custom_fold_text()'
+
+function _G.custom_fold_text()
+  local line = vim.fn.getline(vim.v.foldstart) -- Get first line of fold
+  local fold_size = vim.v.foldend - vim.v.foldstart + 1 -- Number of folded lines
+  return line .. ' 󰁂 ' .. fold_size .. ' lines '
+end
+
 -- Save undo history
 vim.opt.undofile = true
 
