@@ -49,6 +49,14 @@ return { -- Useful plugin to show you pending keybinds.
         icon = '',
         color = 'purple',
       } },
+      {
+        '<leader>p',
+        group = '[P]ersistence sessions',
+        icon = {
+          icon = '󰅒',
+          color = 'yellow',
+        },
+      },
       { '<leader>d', group = '[D]ocument', icon = {
         icon = '󰈔',
       } },
