@@ -93,3 +93,6 @@ map('n', '<leader>gd', function()
     end
   end)
 end, { desc = 'Git [D]iscard changes in current file' })
+
+-- Git explorer
+map('n', '<leader>ge', '<Cmd>Neotree reveal git_status<CR>', { desc = 'Open git [E]xplorer' })
