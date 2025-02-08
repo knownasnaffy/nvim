@@ -37,9 +37,14 @@ end, { desc = 'Git [U]nstage current file' })
 
 -- Push & Pull
 map('n', '<leader>gp', function()
-  vim.cmd 'G push'
-  print 'Pushed changes to remote.'
-end, { desc = 'Git [P]ush changes to remote' })
+  vim.system({ 'git', 'push' }, { text = true }, function(obj)
+    if obj.code == 0 then
+      print 'Pushed changes to remote.'
+    else
+      print('Git push failed: ' .. obj.stderr)
+    end
+  end)
+end, { desc = 'Git [P]ush changes to remote (async)' })
 
 map('n', '<leader>gP', function()
   vim.cmd 'G pull'
