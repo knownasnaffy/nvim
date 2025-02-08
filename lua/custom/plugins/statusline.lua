@@ -5,6 +5,9 @@ return { -- Statusline and Tabline
     local statusline_theme = require 'lualine.themes.auto'
 
     statusline_theme.normal.a.gui = 'bold'
+    statusline_theme.insert.a.gui = 'bold'
+    statusline_theme.command.a.gui = 'bold'
+    statusline_theme.terminal.a.gui = 'bold'
 
     local function diff_source()
       local gitsigns = vim.b.gitsigns_status_dict
@@ -54,13 +57,13 @@ return { -- Statusline and Tabline
     end
 
     local tabline_section_y = function() -- Make separator `\` color same as section color
-      return battery_status() .. '\\ %{strftime("%H:%M")}'
+      return battery_status() .. ' 󰦖 %{strftime("%H:%M")}'
     end
 
     require('lualine').setup {
       options = {
-        section_separators = { left = '', right = '' },
-        component_separators = { left = '/', right = '\\' },
+        section_separators = { left = '', right = '' },
+        component_separators = { left = '', right = '' },
         theme = statusline_theme,
         disabled_filetypes = { -- Filetypes to disable lualine for.
           statusline = {
@@ -70,7 +73,7 @@ return { -- Statusline and Tabline
         },
       },
       sections = {
-        lualine_a = { 'mode' },
+        lualine_a = { { 'mode', separator = { left = '' }, padding = { left = 1, right = 2 } } },
         lualine_b = {
           {
             'filename',
@@ -86,10 +89,11 @@ return { -- Statusline and Tabline
             -- for other components. (terrible name, any suggestions?)
             symbols = {
               modified = '', -- Text to show when the file is modified.
-              readonly = '', -- Text to show when the file is non-modifiable or readonly.
+              readonly = ' ', -- Text to show when the file is non-modifiable or readonly.
               unnamed = '[Unsaved]', -- Text to show for unnamed buffers.
               newfile = '[New]', -- Text to show for newly created file before first write
             },
+            padding = { left = 2, right = 1 },
           },
         },
         lualine_c = {
@@ -107,6 +111,7 @@ return { -- Statusline and Tabline
             -- It must return a table as such:
             --   { added = add_count, modified = modified_count, removed = removed_count }
             -- or nil on failure. count <= 0 won't be displayed.
+            padding = { left = 2, right = 1 },
           },
         },
         lualine_x = {
@@ -118,12 +123,12 @@ return { -- Statusline and Tabline
               return package.loaded['noice'] and require('noice').api.status.mode.has()
             end,
             color = { fg = '#ff9e64' },
+            padding = { left = 1, right = 2 },
           },
-          'diagnostics',
         },
-        lualine_y = { 'progress' },
+        lualine_y = { { 'progress', icon = '󰦕', padding = { left = 1, right = 1 } }, { '%l:%c', icon = '', padding = { left = 1, right = 2 } } },
         -- <line number>:<column number>
-        lualine_z = { '%l:%c' },
+        lualine_z = { { tabline_section_y, separator = { right = '' }, padding = { left = 2, right = 1 } } },
       },
       inactive_sections = {
         lualine_a = {},
@@ -132,43 +137,6 @@ return { -- Statusline and Tabline
         lualine_x = {},
         lualine_y = { 'location' },
         lualine_z = {},
-      },
-      tabline = {
-        lualine_a = {},
-        lualine_b = {
-          {
-            'buffers',
-            max_length = vim.o.columns, -- Maximum width of buffers component,
-            -- it can also be a function that returns
-            -- the value of `max_length` dynamically.
-            filetype_names = {
-              TelescopePrompt = 'Telescope',
-              dashboard = 'Dashboard',
-              ['neo-tree-popup'] = 'Neo Tree',
-            }, -- Shows specific buffer name for that filetype ( { `filetype` = `buffer_name`, ... } )
-            buffers_color = {
-              -- Same values as the general color option can be used here.
-              active = 'lualine_a_normal', -- Color for active buffer.
-              inactive = 'lualine_b_normal', -- Color for inactive buffer.
-            },
-            symbols = {
-              modified = ' ●', -- Text to show when the buffer is modified
-              alternate_file = '', -- Text to show to identify the alternate file
-              directory = '', -- Text to show when the buffer is a directory
-            },
-          },
-        },
-        lualine_c = {},
-        lualine_x = {},
-        lualine_y = {
-          {
-            tabline_section_y,
-            color = {
-              fg = require('lualine.themes.auto').normal.b.fg, -- Disables color change on mode change
-            },
-          },
-        },
-        lualine_z = { 'tabs' },
       },
     }
   end,
