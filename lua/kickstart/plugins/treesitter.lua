@@ -10,6 +10,7 @@ return { -- Highlight, edit, and navigate code
       'css',
       'diff',
       'html',
+      'http', -- For rest.nvim
       'javascript',
       'lua',
       'luadoc',
