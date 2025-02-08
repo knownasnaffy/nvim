@@ -45,6 +45,18 @@ end
 -- Save undo history
 vim.opt.undofile = true
 
+-- Session settings
+vim.opt.sessionoptions:append 'globals'
+vim.api.nvim_create_user_command('Mksession', function(attr)
+  vim.api.nvim_exec_autocmds('User', { pattern = 'SessionSavePre' })
+
+  -- Neovim 0.8+
+  vim.cmd.mksession { bang = attr.bang, args = attr.fargs }
+
+  -- Neovim 0.7
+  -- vim.api.nvim_command('mksession ' .. (attr.bang and '!' or '') .. attr.args)
+end, { bang = true, complete = 'file', desc = 'Save barbar with :mksession', nargs = '?' })
+
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.opt.ignorecase = true
 vim.opt.smartcase = true

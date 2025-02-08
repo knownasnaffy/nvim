@@ -1,4 +1,5 @@
 return {
+  -- enabled = false,
   'folke/persistence.nvim',
   event = 'BufReadPre', -- this will only start session saving when an actual file was opened
   keys = {
@@ -31,5 +32,12 @@ return {
       desc = 'Stop Persistence (session won’t be saved)',
     },
   },
-  opts = {},
+  opts = {
+    -- options = {--[[<other options>,]]
+    --   'globals',
+    -- },
+    -- pre_save = function()
+    --   vim.api.nvim_exec_autocmds('User', { pattern = 'SessionSavePre' })
+    -- end,
+  },
 }
