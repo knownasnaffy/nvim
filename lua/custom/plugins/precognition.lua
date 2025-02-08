@@ -1,6 +1,11 @@
 return {
   'tris203/precognition.nvim',
   event = 'VeryLazy',
+  keys = {
+    { '<leader>tp',
+    ':Precognition toggle<CR>',
+    desc = 'Toggle [P]recognition hints', }
+  },
   opts = {
     startVisible = false,
     -- showBlankVirtLine = true,
