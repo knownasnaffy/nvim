@@ -17,9 +17,6 @@ end, { desc = 'Go to previous buffer' })
 map('n', '<A-S-,>', '<Cmd>BufferMovePrevious<CR>')
 map('n', '<A-S-.>', '<Cmd>BufferMoveNext<CR>')
 
--- Close buffer BufferRestore
--- map('n', '<A-q>', '<Cmd>bd<CR>')
-
 -- Restore buffer
 map('n', '<leader>br', '<Cmd>BufferRestore<CR>', { desc = '[R]estore last close buffer' })
 
@@ -39,6 +36,10 @@ map('n', '<leader>bd', '<Cmd>BufferPickDelete<CR>', { desc = 'Magic buffer [D]el
 map('n', '<leader>bqo', '<Cmd>BufferCloseAllButCurrent<CR>', { desc = 'Close [O]ther buffers' })
 map('n', '<leader>bqr', '<Cmd>BufferCloseBuffersRight<CR>', { desc = 'Close buffers to the [R]ight' })
 map('n', '<leader>bql', '<Cmd>BufferCloseBuffersLeft<CR>', { desc = 'Close buffers to the [L]eft' })
+map('n', '<leader>bqc', '<Cmd>BufferClose<CR>', { desc = 'Close [C]urrent buffer' })
+
+map('n', '<leader>bwc', '<Cmd>w<CR>', { desc = 'Write [C]urrent file' })
+map('n', '<leader>bwa', '<Cmd>wa<CR>', { desc = 'Write [A]ll files' })
 
 -- Goto buffer in position...
 map('n', '<A-1>', '<Cmd>BufferGoto 1<CR>')
