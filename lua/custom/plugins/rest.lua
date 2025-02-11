@@ -2,9 +2,6 @@ return {
   {
     'vhyrro/luarocks.nvim',
     branch = 'go-away-python',
-    opts = {
-      rocks = { 'lua-curl', 'nvim-nio', 'mimetypes', 'xml2lua' }, -- Specify LuaRocks packages to install
-    },
   },
   {
     'rest-nvim/rest.nvim',
@@ -26,7 +23,7 @@ return {
       },
       {
         '<leader>as',
-        require('telescope').extensions.rest.select_env,
+        ':Rest env select<CR>',
       },
     },
     config = function()
