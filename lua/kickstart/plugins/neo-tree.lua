@@ -155,7 +155,7 @@ return {
         ['<2-LeftMouse>'] = 'open',
         ['<cr>'] = 'open',
         ['e'] = 'open',
-        ['l'] = 'open',
+        [';'] = 'open',
         ['<esc>'] = 'cancel', -- close preview or floating neo-tree window
         ['<space>'] = { 'toggle_preview', config = { use_float = true, use_image_nvim = true } },
         -- Read `# Preview Mode` for more information
@@ -170,7 +170,8 @@ return {
         ['w'] = 'open_with_window_picker',
         -- ["P"] = "toggle_preview", -- enter preview mode, which shows the current node without focusing
         ['C'] = 'close_node',
-        ['h'] = 'close_node',
+        ['j'] = 'close_node',
+        ['l'] = 'move_cursor_up',
         -- ['C'] = 'close_all_subnodes',
         ['z'] = 'close_all_nodes',
         --["Z"] = "expand_all_nodes",
@@ -200,8 +201,8 @@ return {
         ['q'] = 'close_window',
         ['R'] = 'refresh',
         ['?'] = 'show_help',
-        ['<M-h>'] = 'prev_source',
-        ['<M-l>'] = 'next_source',
+        ['<M-;>'] = 'prev_source',
+        ['<M-j>'] = 'next_source',
         ['i'] = 'show_file_details',
       },
     },
