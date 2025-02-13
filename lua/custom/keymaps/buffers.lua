@@ -21,7 +21,7 @@ map('n', '<A-S-.>', '<Cmd>BufferMoveNext<CR>')
 map('n', '<leader>br', '<Cmd>BufferRestore<CR>', { desc = '[R]estore last close buffer' })
 
 -- Pin/unpin buffer
-map('n', '<A-p>', '<Cmd>BufferPin<CR>')
+map('n', '<A-S-p>', '<Cmd>BufferPin<CR>')
 
 -- Magic buffer-picking mode
 map('n', '<leader>bp', '<Cmd>BufferPick<CR>', { desc = 'Magic buffer [P]icker' })
