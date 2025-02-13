@@ -16,10 +16,13 @@ map('n', 'K', '<C-d>', { desc = 'Scroll down half-page' })
 map('n', 'L', '<C-u>', { desc = 'Scroll up half-page' })
 
 -- Movement between wrapped lines
-map({ 'n', 'v' }, 'k', 'gj', { desc = 'Move down by display line' })
-map({ 'n', 'v' }, 'l', 'gk', { desc = 'Move up by display line' })
+map({ 'n', 'x' }, 'k', 'gj', { desc = 'Move down by display line' })
+map({ 'n', 'x' }, 'l', 'gk', { desc = 'Move up by display line' })
+map({ 'n', 'x' }, 'j', 'h')
+map({ 'n', 'x' }, ';', 'l')
+
 map('n', '0', 'g0', { desc = 'Move to beginning of display line' })
 map('n', '$', 'g$', { desc = 'Move to end of display line' })
 
-map({ 'n', 'v' }, 'j', 'h')
-map({ 'n', 'v' }, ';', 'l')
+map({ 'n', 'x', 'i' }, '<A-n>', '<C-n>')
+map({ 'n', 'x', 'i' }, '<A-p>', '<C-p>')

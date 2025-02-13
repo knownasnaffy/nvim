@@ -81,6 +81,8 @@ return { -- Autocompletion
         -- If you prefer more traditional completion keymaps,
         -- you can uncomment the following lines
         ['<CR>'] = cmp.mapping.confirm { select = true },
+        ['<M-;>'] = cmp.mapping.confirm { select = true },
+
         ['<M-k>'] = cmp.mapping.select_next_item(),
         ['<M-l>'] = cmp.mapping.select_prev_item(),
 
@@ -88,6 +90,7 @@ return { -- Autocompletion
         --  Generally you don't need this, because nvim-cmp will display
         --  completions whenever it has completion options available.
         ['<S-Space>'] = cmp.mapping.complete {},
+        ['<A-Space>'] = cmp.mapping.complete {},
 
         -- Think of <c-l> as moving to the right of your snippet expansion.
         --  So if you have a snippet that's like:

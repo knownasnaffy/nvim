@@ -15,14 +15,5 @@ return { -- Collection of various small independent plugins/modules
     -- - sd'   - [S]urround [D]elete [']quotes
     -- - sr)'  - [S]urround [R]eplace [)] [']
     require('mini.surround').setup()
-
-    -- Move any selection in any direction
-    --
-    -- 'v' to enter visual mode and select items
-    -- 'V' to select the whole line
-    -- <M-{h,j,k,l}> to move the stuff around
-    -- require('mini.move').setup {
-    --   mappings = {},
-    -- }
   end,
 }
