@@ -3,10 +3,10 @@ local map = vim.keymap.set
 --  See `:help wincmd` for a list of all window commands
 --
 --  Switching between windows
-map('n', '<leader>wh', '<C-w>h', { desc = 'Move focus to the left window' })
-map('n', '<leader>wl', '<C-w>l', { desc = 'Move focus to the right window' })
-map('n', '<leader>wj', '<C-w>j', { desc = 'Move focus to the lower window' })
-map('n', '<leader>wk', '<C-w>k', { desc = 'Move focus to the upper window' })
+map('n', '<leader>wj', '<C-w>h', { desc = 'Move focus to the left window' })
+map('n', '<leader>w;', '<C-w>l', { desc = 'Move focus to the right window' })
+map('n', '<leader>wk', '<C-w>j', { desc = 'Move focus to the lower window' })
+map('n', '<leader>wl', '<C-w>k', { desc = 'Move focus to the upper window' })
 map('n', '<leader>ww', '<C-w>w', { desc = 'Switch window' })
 
 -- Resizing
@@ -21,10 +21,10 @@ map('n', '<leader>wv', '<C-w>v', { desc = 'Split window vertically' })
 map('n', '<leader>wm', '<C-w>| <C-w>_', { desc = 'Maximize window' })
 map('n', '<leader>wr', '<C-w>=', { desc = 'Reset window sizes' })
 
-map('n', '<leader>wH', '<C-w>H', { desc = 'Move current window to the left' })
-map('n', '<leader>wL', '<C-w>L', { desc = 'Move current window to the right' })
-map('n', '<leader>wJ', '<C-w>J', { desc = 'Move current window to the bottom' })
-map('n', '<leader>wK', '<C-w>K', { desc = 'Move current window to the top' })
+map('n', '<leader>wJ', '<C-w>H', { desc = 'Move current window to the left' })
+map('n', '<leader>w:', '<C-w>L', { desc = 'Move current window to the right' })
+map('n', '<leader>wK', '<C-w>J', { desc = 'Move current window to the bottom' })
+map('n', '<leader>wL', '<C-w>K', { desc = 'Move current window to the top' })
 
 -- Closing windows
 map('n', '<leader>wq', '<C-w>q', { desc = 'Close current window' })
