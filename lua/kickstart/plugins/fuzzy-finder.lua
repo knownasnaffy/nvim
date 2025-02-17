@@ -51,8 +51,8 @@ return { -- Fuzzy Finder (files, lsp, etc)
       defaults = {
         mappings = {
           i = {
-            ['<M-k>'] = 'move_selection_previous',
-            ['<M-j>'] = 'move_selection_next',
+            ['<M-l>'] = 'move_selection_previous',
+            ['<M-k>'] = 'move_selection_next',
             ['<M-b>'] = 'preview_scrolling_up',
             ['<M-f>'] = 'preview_scrolling_down',
           },
