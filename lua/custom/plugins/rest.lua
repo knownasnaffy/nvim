@@ -25,6 +25,11 @@ return {
         '<leader>as',
         ':Rest env select<CR>',
       },
+      {
+        '<leader>af',
+        '<C-w>l:set ma<CR>/@_RES<CR>:nohlsearch<CR>jV:!jq<CR><C-w>h',
+        desc = 'Rest json format',
+      },
     },
     config = function()
       vim.api.nvim_create_autocmd('BufReadPost', {
