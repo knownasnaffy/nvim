@@ -25,17 +25,23 @@ return {
         '<leader>as',
         ':Rest env select<CR>',
       },
-      {
-        '<leader>af',
-        '<C-w>l:set ma<CR>/@_RES<CR>:nohlsearch<CR>jV:!jq<CR><C-w>h',
-        desc = 'Rest json format',
-      },
+      -- {
+      --   '<leader>af',
+      --   '<C-w>l:set ma<CR>/@_RES<CR>:nohlsearch<CR>jV:!jq<CR><C-w>h',
+      --   desc = 'Rest json format',
+      -- },
     },
     config = function()
       vim.api.nvim_create_autocmd('BufReadPost', {
         pattern = '*.http',
         callback = function()
           vim.cmd('Rest env set ' .. vim.fn.expand '%:p:h' .. '/.env')
+        end,
+      })
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = 'json',
+        callback = function(ev)
+          vim.bo[ev.buf].formatprg = 'jq'
         end,
       })
 
