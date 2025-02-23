@@ -57,7 +57,7 @@ return { -- Statusline and Tabline
     end
 
     local tabline_section_y = function() -- Make separator `\` color same as section color
-      return ' 󰦖 %{strftime("%H:%M")}'
+      return '󰦖 %{strftime("%H:%M")}'
     end
 
     require('lualine').setup {
