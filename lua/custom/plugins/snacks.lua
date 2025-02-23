@@ -34,6 +34,16 @@ return {
       -- refer to the configuration section below
       buffdelete = { enabled = true },
       dashboard = {
+        preset = {
+
+          header = [[
+   ███╗   ██╗ █████╗ ███████╗███████╗██╗   ██╗
+   ████╗  ██║██╔══██╗██╔════╝██╔════╝╚██╗ ██╔╝
+  ██╔██╗ ██║███████║█████╗  █████╗   ╚████╔╝
+ ██║╚██╗██║██╔══██║██╔══╝  ██╔══╝    ╚██╔╝
+██║ ╚████║██║  ██║██║     ██║        ██║
+   ╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝     ╚═╝        ╚═╝   ]],
+        },
         sections = {
           { section = 'header' },
           { section = 'keys', gap = 1, padding = 1 },
