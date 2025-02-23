@@ -69,6 +69,7 @@ return { -- Statusline and Tabline
           statusline = {
             'neo-tree',
             'neo-tree-popup',
+            'undotree',
           }, -- only ignores the ft for statusline.
         },
       },
