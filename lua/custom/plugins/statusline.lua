@@ -20,43 +20,7 @@ return { -- Statusline and Tabline
       end
     end
 
-    local function battery_status()
-      local handle = io.popen 'acpi -b'
-      if not handle then
-        return '' -- Default icon for unavailable status
-      end
-
-      local result = handle:read '*a'
-      handle:close()
-
-      -- Extract battery percentage and status
-      local percentage = tonumber(result:match '(%d?%d?%d)%%')
-      local status = result:match 'Battery %d+: ([%a%s]+),' or 'Unknown'
-
-      if not percentage then
-        return '' -- Default fallback
-      end
-      local discharging = status:lower():find 'discharging'
-
-      local icon
-      if percentage < 20 then
-        icon = discharging and ' 󰚥 ' or '  ' -- Warning icon for low battery
-      elseif percentage >= 20 and percentage < 40 then
-        icon = discharging and '  ' or '  ' -- Low battery icon
-      elseif percentage >= 40 and percentage < 60 then
-        icon = discharging and '  ' or '  ' -- Mid-level battery icon
-      elseif percentage >= 60 and percentage < 80 then
-        icon = discharging and '  ' or '  ' -- High battery icon
-      elseif percentage >= 80 and percentage <= 100 then
-        icon = discharging and '  ' or ' 󰚦 ' -- Full battery icon
-      else
-        icon = ' ' -- Default fallback icon
-      end
-
-      return icon
-    end
-
-    local tabline_section_y = function() -- Make separator `\` color same as section color
+    local statusline_section_z = function() -- Make separator `\` color same as section color
       return '󰦖 %{strftime("%H:%M")}'
     end
 
@@ -129,7 +93,7 @@ return { -- Statusline and Tabline
         },
         lualine_y = { { 'progress', icon = '󰦕', padding = { left = 1, right = 1 } }, { '%l:%c', icon = '', padding = { left = 1, right = 2 } } },
         -- <line number>:<column number>
-        lualine_z = { { tabline_section_y, separator = { right = '' }, padding = { left = 2, right = 1 } } },
+        lualine_z = { { statusline_section_z, separator = { right = '' }, padding = { left = 2, right = 1 } } },
       },
       inactive_sections = {
         lualine_a = {},
