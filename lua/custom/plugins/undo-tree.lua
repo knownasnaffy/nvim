@@ -1,5 +1,10 @@
 return {
   'mbbill/undotree',
+  keys = { {
+    '<leader>u',
+    vim.cmd.UndotreeToggle,
+    desc = 'Open File [U]ndo Tree',
+  } },
   config = function()
     -- 1 = Both left; 2 = tree left, diff bottom; 3 = both right; 4 = tree right, diff bottom;
     vim.g.undotree_WindowLayout = 3

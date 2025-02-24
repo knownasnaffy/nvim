@@ -45,10 +45,24 @@ return { -- Useful plugin to show you pending keybinds.
 
     -- Document existing key chains
     spec = {
-      { '<leader>c', group = '[C]ode', mode = { 'n', 'x' }, icon = {
-        icon = '',
-        color = 'purple',
-      } },
+      {
+        '<leader>c',
+        group = '[C]ode',
+        mode = { 'n', 'x' },
+        icon = {
+          icon = '',
+          color = 'purple',
+        },
+      },
+      {
+        '<leader>a',
+        group = '[A]PI testing',
+        mode = { 'n' },
+        icon = {
+          icon = '',
+          color = 'purple',
+        },
+      },
       {
         '<leader>p',
         group = '[P]ersistence sessions',
@@ -89,7 +103,7 @@ return { -- Useful plugin to show you pending keybinds.
       },
       {
         '<leader>b',
-        group = 'Manage [B]uffers',
+        group = '[B]uffer Management',
         icon = {
           icon = '󰓩',
           color = 'blue',

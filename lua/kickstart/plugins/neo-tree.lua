@@ -15,7 +15,7 @@ return {
   cmd = 'Neotree',
   keys = {
     { '<M-e>', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
-    { '<leader>e', ':Neotree reveal<CR>', desc = 'Open [explorer]', silent = true },
+    { '<leader>e', ':Neotree reveal<CR>', desc = 'Open [E]xplorer', silent = true },
   },
   opts = {
     sources = {
