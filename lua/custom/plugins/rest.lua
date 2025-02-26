@@ -48,9 +48,14 @@ return {
       require 'rest-nvim'
       ---@type rest.Opts
       vim.g.rest_nvim = {
-        -- ...
         request = {
           hooks = {},
+        },
+        ui = {
+          keybinds = {
+            next = 'O',
+            prev = 'I',
+          },
         },
       }
     end,
