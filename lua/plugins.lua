@@ -39,3 +39,6 @@ require('lazy').setup({
     notify = false, -- get a notification when changes are found
   },
 })
+
+-- Load clickup feature
+require 'custom.clickup'
