@@ -9,24 +9,13 @@ return { -- Statusline and Tabline
     statusline_theme.command.a.gui = 'bold'
     statusline_theme.terminal.a.gui = 'bold'
 
-    local function diff_source()
-      local gitsigns = vim.b.gitsigns_status_dict
-      if gitsigns then
-        return {
-          added = gitsigns.added,
-          modified = gitsigns.changed,
-          removed = gitsigns.removed,
-        }
-      end
-    end
-
     local statusline_section_z = function() -- Make separator `\` color same as section color
       return '󰦖 %{strftime("%H:%M")}'
     end
 
     require('lualine').setup {
       options = {
-        section_separators = { left = '', right = '' },
+        section_separators = { left = ' ', right = ' ' },
         component_separators = { left = '', right = '' },
         theme = statusline_theme,
         disabled_filetypes = { -- Filetypes to disable lualine for.
@@ -38,8 +27,19 @@ return { -- Statusline and Tabline
         },
       },
       sections = {
-        lualine_a = { { 'mode', separator = { left = '' }, padding = { left = 1, right = 2 } } },
+        lualine_a = { { 'mode', padding = { left = 2, right = 2 } } },
         lualine_b = {
+          {
+            'branch',
+            {
+              padding = { left = 2, right = 2 },
+            },
+            fmt = function(name)
+              return name .. ' '
+            end,
+          },
+        },
+        lualine_c = {
           {
             'filename',
             file_status = true, -- Displays file status (readonly status, modified status)
@@ -58,25 +58,7 @@ return { -- Statusline and Tabline
               unnamed = '[Unsaved]', -- Text to show for unnamed buffers.
               newfile = '[New]', -- Text to show for newly created file before first write
             },
-            padding = { left = 2, right = 1 },
-          },
-        },
-        lualine_c = {
-          {
-            'diff',
-            colored = true, -- Displays a colored diff status if set to true
-            -- diff_color = {
-            --   -- Same color values as the general color option can be used here.
-            --   added = 'LuaLineDiffAdd', -- Changes the diff's added color
-            --   modified = 'LuaLineDiffChange', -- Changes the diff's modified color
-            --   removed = 'LuaLineDiffDelete', -- Changes the diff's removed color you
-            -- },
-            symbols = { added = ' ', modified = ' ', removed = ' ' }, -- Changes the symbols used by the diff.
-            source = diff_source, -- A function that works as a data source for diff.
-            -- It must return a table as such:
-            --   { added = add_count, modified = modified_count, removed = removed_count }
-            -- or nil on failure. count <= 0 won't be displayed.
-            padding = { left = 2, right = 1 },
+            padding = { left = 2, right = 2 },
           },
         },
         lualine_x = {
@@ -88,12 +70,12 @@ return { -- Statusline and Tabline
               return package.loaded['noice'] and require('noice').api.status.mode.has()
             end,
             color = { fg = '#ff9e64' },
-            padding = { left = 1, right = 2 },
+            padding = { left = 2, right = 2 },
           },
         },
-        lualine_y = { { 'progress', icon = '󰦕', padding = { left = 1, right = 1 } }, { '%l:%c', icon = '', padding = { left = 1, right = 2 } } },
+        lualine_y = { { 'progress', icon = '󰦕', padding = { left = 2, right = 1 } }, { '%l:%c', icon = '', padding = { left = 1, right = 1 } } },
         -- <line number>:<column number>
-        lualine_z = { { statusline_section_z, separator = { right = '' }, padding = { left = 2, right = 1 } } },
+        lualine_z = { { statusline_section_z, padding = { left = 2, right = 2 } } },
       },
       inactive_sections = {
         lualine_a = {},
