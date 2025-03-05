@@ -7,22 +7,38 @@ local map = vim.keymap.set
 -- map('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
 -- Page scroll keys (I hate control key)
-map('n', '<M-d>', '<C-d>')
-map('n', '<M-f>', '<C-f>')
-map('n', '<M-u>', '<C-u>')
-map('n', '<M-b>', '<C-b>')
+map({ 'n', 'x' }, '<M-d>', '<C-d>')
+map({ 'n', 'x' }, '<M-f>', '<C-f>')
+map({ 'n', 'x' }, '<M-u>', '<C-u>')
+map({ 'n', 'x' }, '<M-b>', '<C-b>')
 
-map('n', 'K', '<C-d>', { desc = 'Scroll down half-page' })
-map('n', 'L', '<C-u>', { desc = 'Scroll up half-page' })
+map({ 'n', 'x' }, 'K', '<C-d>', { desc = 'Scroll down half-page' })
+map({ 'n', 'x' }, 'L', '<C-u>', { desc = 'Scroll up half-page' })
 
 -- Movement between wrapped lines
 map({ 'n', 'x' }, 'k', 'gj', { desc = 'Move down by display line' })
 map({ 'n', 'x' }, 'l', 'gk', { desc = 'Move up by display line' })
 map({ 'n', 'x' }, 'j', 'h')
 map({ 'n', 'x' }, ';', 'l')
-
 map('n', '0', 'g0', { desc = 'Move to beginning of display line' })
 map('n', '$', 'g$', { desc = 'Move to end of display line' })
 
+-- Next and previous options
 map({ 'n', 'x', 'i' }, '<A-n>', '<C-n>')
 map({ 'n', 'x', 'i' }, '<A-p>', '<C-p>')
+
+-- Exiting visual and insert mode
+map({ 'v', 'i' }, '<A-q>', '<Esc>')
+
+-- Movement in insert and command-line mode
+map({ 'c' }, '<A-q>', '<Bs>')
+map({ 'c', 'i' }, '<A-w>', '<C-w>')
+map({ 'c', 'i' }, '<A-d>', '<C-Del>')
+map({ 'c', 'i' }, '<A-j>', '<C-Left>')
+map({ 'c', 'i' }, '<A-k>', '<Down>')
+map({ 'c', 'i' }, '<A-l>', '<Up>')
+map({ 'c', 'i' }, '<A-;>', '<C-Right>')
+
+-- Navigation in history
+map({ 'n' }, '<A-o>', '<C-o>')
+map({ 'n' }, '<A-i>', '<C-i>')
