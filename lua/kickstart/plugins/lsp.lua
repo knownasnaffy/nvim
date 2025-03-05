@@ -212,6 +212,7 @@ return {
       'stylua', -- Used to format Lua code
       'prettier', -- Used to format typescript/javascript code
       'beautysh', -- For shell files
+      'taplo', -- For toml files
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
