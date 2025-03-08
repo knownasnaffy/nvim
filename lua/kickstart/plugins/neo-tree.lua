@@ -22,7 +22,7 @@ return {
       'filesystem',
       'git_status',
     },
-    popup_border_style = 'rounded',
+    popup_border_style = 'solid',
     source_selector = {
       winbar = true, -- toggle to show selector on winbar
       content_layout = 'center', -- only with `tabs_layout` = "equal", "focus"
@@ -139,8 +139,8 @@ return {
           width = '50',
         },
         position = '50%', -- 50% means center it
-        title = function(state) -- format the text that appears at the top of a popup window
-          return 'Neo-tree asd ' .. state.name:gsub('^%l', string.upper)
+        title = function() -- format the text that appears at the top of a popup window
+          return ''
         end,
       },
       mapping_options = {
