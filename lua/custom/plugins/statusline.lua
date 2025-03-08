@@ -8,6 +8,7 @@ return { -- Statusline and Tabline
     statusline_theme.insert.a.gui = 'bold'
     statusline_theme.command.a.gui = 'bold'
     statusline_theme.terminal.a.gui = 'bold'
+    statusline_theme.visual.a.gui = 'bold'
 
     local statusline_section_z = function() -- Make separator `\` color same as section color
       return '󰦖 %{strftime("%H:%M")}'
@@ -23,14 +24,37 @@ return { -- Statusline and Tabline
             'neo-tree',
             'neo-tree-popup',
             'undotree',
+            'snacks_dashboard',
           }, -- only ignores the ft for statusline.
         },
       },
       sections = {
-        lualine_a = { { 'mode', padding = { left = 2, right = 2 } } },
+        lualine_a = {
+          {
+            'mode',
+            fmt = function(str)
+              local prefixes = {
+                terminal = ' ', -- Error icon
+                normal = ' ', -- Warning icon
+                insert = ' ', -- Info icon
+                command = '󰘳 ', -- Hint icon
+                visual = '󰈈 ', -- Hint icon
+                ['v-line'] = '󰈈 ', -- Hint icon
+                ['v-block'] = '󰈈 ', -- Hint icon
+              }
+
+              local lower_input = string.lower(str)
+              local prefix = prefixes[lower_input] or ''
+
+              return prefix .. str
+            end,
+            padding = { left = 2, right = 2 },
+          },
+        },
         lualine_b = {
           {
-            'branch',
+            'FugitiveHead',
+            icon = '󰘬',
             {
               padding = { left = 2, right = 2 },
             },
@@ -45,6 +69,7 @@ return { -- Statusline and Tabline
             file_status = true, -- Displays file status (readonly status, modified status)
             newfile_status = false, -- Display new file status (new file means no write after created)
             path = 1, -- 0: Just the filename
+            icon = '',
             -- 1: Relative path
             -- 2: Absolute path
             -- 3: Absolute path, with tilde as the home directory
@@ -58,7 +83,7 @@ return { -- Statusline and Tabline
               unnamed = '[Unsaved]', -- Text to show for unnamed buffers.
               newfile = '[New]', -- Text to show for newly created file before first write
             },
-            padding = { left = 2, right = 2 },
+            padding = { left = 1, right = 2 },
           },
         },
         lualine_x = {
@@ -69,7 +94,7 @@ return { -- Statusline and Tabline
               ---@diagnostic disable-next-line:undefined-field
               return package.loaded['noice'] and require('noice').api.status.mode.has()
             end,
-            color = { fg = '#ff9e64' },
+            color = { fg = '#bb9af7' },
             padding = { left = 2, right = 2 },
           },
         },
