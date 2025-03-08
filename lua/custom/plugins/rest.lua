@@ -35,7 +35,16 @@ return {
       vim.api.nvim_create_autocmd('BufReadPost', {
         pattern = '*.http',
         callback = function()
-          vim.cmd('Rest env set ' .. vim.fn.expand '%:p:h' .. '/.env')
+          local dir = vim.fn.expand '%:p:h' -- Get directory of the opened file
+
+          while dir and dir ~= '/' do
+            local env_path = dir .. '/.env'
+            if vim.fn.filereadable(env_path) == 1 then
+              vim.cmd('Rest env set ' .. env_path)
+              return -- Stop searching once we find the .env file
+            end
+            dir = vim.fn.fnamemodify(dir, ':h') -- Move up one directory
+          end
         end,
       })
       vim.api.nvim_create_autocmd('FileType', {
