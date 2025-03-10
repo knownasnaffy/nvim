@@ -203,6 +203,8 @@ return {
         ['?'] = 'show_help',
         ['<M-;>'] = 'prev_source',
         ['<M-j>'] = 'next_source',
+        ['<M-,>'] = 'prev_source',
+        ['<M-.>'] = 'next_source',
         ['i'] = 'show_file_details',
       },
     },
