@@ -177,7 +177,7 @@ return {
       -- Tailwindcss
       tailwindcss = {},
 
-      pyright = {},
+      pylsp = {},
 
       cssls = {
         settings = {
