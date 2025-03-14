@@ -49,16 +49,52 @@ return { -- Fuzzy Finder (files, lsp, etc)
       --  All the info you're looking for is in `:help telescope.setup()`
       --
       defaults = {
+        wrap_results = true,
+        borderchars = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+        results_title = '',
+        prompt_title = '',
+        file_ignore_patterns = { '.git/' },
         mappings = {
           i = {
             ['<M-l>'] = 'move_selection_previous',
             ['<M-k>'] = 'move_selection_next',
+            ['<M-S-l>'] = 'results_scrolling_up',
+            ['<M-S-k>'] = 'results_scrolling_down',
             ['<M-b>'] = 'preview_scrolling_up',
             ['<M-f>'] = 'preview_scrolling_down',
+            ['<M-q>'] = 'close',
+            ['<M-/>'] = 'which_key',
+            ['<M-w>'] = { '<esc>vbda', type = 'command' },
+          },
+          n = {
+            ['<M-l>'] = 'move_selection_previous',
+            ['<M-k>'] = 'move_selection_next',
+            ['l'] = 'move_selection_previous',
+            ['k'] = 'move_selection_next',
+            [';'] = { 'l', type = 'command' },
+            ['j'] = { 'h', type = 'command' },
+            ['<M-b>'] = 'preview_scrolling_up',
+            ['<M-f>'] = 'preview_scrolling_down',
+            ['<M-q>'] = 'close',
+            ['<M-/>'] = 'which_key',
           },
         },
       },
-      -- pickers = {}
+      pickers = {
+        find_files = {
+          hidden = true,
+        },
+        git_branches = {
+          mappings = {
+            i = {
+              ['<M-a>'] = 'git_create_branch',
+              ['<M-d>'] = 'git_delete_branch',
+              ['<M-y>'] = 'git_merge_branch',
+              ['<M-s>'] = 'git_switch_branch',
+            },
+          },
+        },
+      },
       extensions = {
         ['ui-select'] = {
           require('telescope.themes').get_dropdown(),
