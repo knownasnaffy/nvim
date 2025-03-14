@@ -34,10 +34,10 @@ map({ 'v', 'i' }, '<A-q>', '<Esc>')
 map({ 'c' }, '<A-q>', '<Bs>')
 map({ 'c', 'i' }, '<A-w>', '<C-w>')
 map({ 'c', 'i' }, '<A-d>', '<C-Del>')
-map({ 'c', 'i' }, '<A-j>', '<C-Left>')
+map({ 'c', 'i' }, '<A-j>', '<Left>')
 map({ 'c', 'i' }, '<A-k>', '<Down>')
 map({ 'c', 'i' }, '<A-l>', '<Up>')
-map({ 'c', 'i' }, '<A-;>', '<C-Right>')
+map({ 'c', 'i' }, '<A-;>', '<Right>')
 
 -- Navigation in history
 map({ 'n' }, '<A-o>', '<C-o>')
