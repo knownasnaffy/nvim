@@ -49,7 +49,6 @@ return { -- Fuzzy Finder (files, lsp, etc)
       --  All the info you're looking for is in `:help telescope.setup()`
       --
       defaults = {
-        wrap_results = true,
         borderchars = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
         results_title = '',
         prompt_title = '',
