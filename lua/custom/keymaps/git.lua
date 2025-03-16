@@ -89,7 +89,7 @@ end, { desc = 'Git [F]ile history' })
 
 -- Git Log (Compact View)
 map('n', '<leader>gl', function()
-  vim.cmd 'G log --oneline --graph --decorate --all'
+  vim.cmd 'Flogsplit -date=relative -auto-update -all'
 end, { desc = 'Git [L]og (compact)' })
 
 -- Merge Conflict Navigation
