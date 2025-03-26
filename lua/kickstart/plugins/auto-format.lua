@@ -61,6 +61,9 @@ return { -- Autoformat
         css = {
           require('formatter.filetypes.css').prettier,
         },
+        html = {
+          require('formatter.filetypes.html').prettier,
+        },
         toml = {
           require('formatter.filetypes.toml').taplo,
         },
