@@ -86,10 +86,10 @@ return { -- Fuzzy Finder (files, lsp, etc)
         git_branches = {
           mappings = {
             i = {
-              ['<M-a>'] = 'git_create_branch',
-              ['<M-d>'] = 'git_delete_branch',
-              ['<M-y>'] = 'git_merge_branch',
-              ['<M-s>'] = 'git_switch_branch',
+              ['<M-A>'] = 'git_create_branch',
+              ['<M-D>'] = 'git_delete_branch',
+              ['<M-Y>'] = 'git_merge_branch',
+              ['<M-S>'] = 'git_switch_branch',
             },
           },
         },
