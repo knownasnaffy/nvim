@@ -213,6 +213,7 @@ return {
       'prettier', -- Used to format typescript/javascript code
       'beautysh', -- For shell files
       'taplo', -- For toml files
+      'black', -- For python formatting
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
