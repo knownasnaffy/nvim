@@ -229,5 +229,11 @@ return {
         end,
       },
     }
+
+    -- External LSPs
+
+    if vim.fn.executable 'dart' == 1 then
+      require('lspconfig').dartls.setup {}
+    end
   end,
 }
