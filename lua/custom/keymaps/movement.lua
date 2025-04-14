@@ -14,6 +14,8 @@ map({ 'n', 'x' }, '<M-b>', '<C-b>')
 
 map({ 'n', 'x' }, 'K', '<C-d>', { desc = 'Scroll down half-page' })
 map({ 'n', 'x' }, 'L', '<C-u>', { desc = 'Scroll up half-page' })
+map({ 'n', 'x' }, '<leader>j', '^', { desc = 'Move to the first non-blank character in the line' })
+map({ 'n', 'x' }, '<leader>;', '$', { desc = 'Move to the last character in the line' })
 
 -- Movement between wrapped lines
 map({ 'n', 'x' }, 'k', 'gj', { desc = 'Move down by display line' })
