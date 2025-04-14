@@ -92,6 +92,6 @@ local severity = {
   'info',
   'info', -- map both hint and info to info?
 }
-vim.lsp.handlers['window/showMessage'] = function(err, method, params, client_id)
+vim.lsp.handlers['window/showMessage'] = function(err, method, params)
   vim.notify(method.message, severity[params.type])
 end
