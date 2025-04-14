@@ -73,6 +73,9 @@ return { -- Autoformat
         python = {
           require('formatter.filetypes.python').black,
         },
+        dart = {
+          require('formatter.filetypes.dart').dartformat,
+        },
         -- Use the special "*" filetype for defining formatter configurations on
         -- any filetype
         ['*'] = {
