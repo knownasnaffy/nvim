@@ -22,7 +22,14 @@ return {
     {
       '<M-q>',
       function()
-        Snacks.bufdelete()
+        if vim.fn.getreg '/' ~= '' then
+          -- Clear search highlighting:
+          vim.cmd 'nohlsearch'
+          -- Optionally clear the search register to fully reset
+          vim.fn.setreg('/', '')
+        else
+          Snacks.bufdelete()
+        end
       end,
       desc = 'Delete current buffer',
     },
