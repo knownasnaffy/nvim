@@ -1,5 +1,8 @@
 # kickstart.nvim
 
+> [!IMPORTANT]
+> This is a hard fork of nvim-lua/kickstart.nvim and has a lot of structural and plugin choice change. I haven't found the time yet to update the readme but it should provide the necessary guidelines to get this config working on any machine (most probably).
+
 ## Introduction
 
 A starting point for Neovim that is:
