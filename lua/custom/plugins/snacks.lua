@@ -5,14 +5,6 @@ return {
   lazy = false,
   keys = {
     {
-      '<M-`>',
-      function()
-        Snacks.terminal.toggle()
-      end,
-      desc = 'Toggle terminal',
-      mode = { 'n', 't' },
-    },
-    {
       '<leader>gb',
       function()
         Snacks.gitbrowse()
@@ -71,13 +63,7 @@ return {
         enabled = true,
       },
       -- words = { enabled = true },
-      terminal = {},
+      terminal = { enabled = false },
     }
-    vim.api.nvim_create_autocmd({ 'TermOpen', 'TermEnter' }, {
-      pattern = '*',
-      callback = function()
-        vim.wo.winbar = ''
-      end,
-    })
   end,
 }
