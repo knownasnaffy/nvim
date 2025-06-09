@@ -76,6 +76,9 @@ return { -- Autoformat
         dart = {
           require('formatter.filetypes.dart').dartformat,
         },
+        cpp = {
+          require('formatter.filetypes.cpp').clangformat,
+        },
         -- Use the special "*" filetype for defining formatter configurations on
         -- any filetype
         ['*'] = {
