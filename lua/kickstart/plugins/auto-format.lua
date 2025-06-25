@@ -2,7 +2,7 @@ return { -- Autoformat
   'mhartington/formatter.nvim',
   config = function()
     -- Utilities for creating configurations
-    -- local util = require 'formatter.util'
+    local util = require 'formatter.util'
 
     -- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
     require('formatter').setup {
@@ -78,6 +78,20 @@ return { -- Autoformat
         },
         cpp = {
           require('formatter.filetypes.cpp').clangformat,
+        },
+        sh = {
+          function()
+            -- Supports conditional formatting
+
+            -- Full specification of configurations is down below and in Vim help
+            -- files
+            return {
+              exe = 'beautysh',
+              args = {
+                util.escape_path(util.get_current_buffer_file_path()),
+              },
+            }
+          end,
         },
         -- Use the special "*" filetype for defining formatter configurations on
         -- any filetype
