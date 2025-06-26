@@ -97,6 +97,10 @@ return { -- Fuzzy Finder (files, lsp, etc)
         ['ui-select'] = {
           require('telescope.themes').get_cursor(),
         },
+        package_info = {
+          -- Optional theme (the extension doesn't set a default theme)
+          theme = 'dropdown',
+        },
       },
     }
 
