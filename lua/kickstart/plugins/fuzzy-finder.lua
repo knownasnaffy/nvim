@@ -20,6 +20,9 @@ return { -- Fuzzy Finder (files, lsp, etc)
 
     -- Useful for getting pretty icons, but requires a Nerd Font.
     { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+
+    -- Lazy plugins related info
+    'tsakirist/telescope-lazy.nvim',
   },
   config = function()
     -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -101,6 +104,22 @@ return { -- Fuzzy Finder (files, lsp, etc)
           -- Optional theme (the extension doesn't set a default theme)
           theme = 'dropdown',
         },
+        -- Type information can be loaded via 'https://github.com/folke/lazydev.nvim'
+        -- by adding the below two annotations:
+        ---@module "telescope._extensions.lazy"
+        ---@type TelescopeLazy.Config
+        lazy = {
+          mappings = {
+            open_in_file_browser = '<M-S-O>',
+            open_in_browser = '<M-o>',
+            open_in_terminal = '<M-t>',
+            open_in_live_grep = '<M-g>',
+            open_in_find_files = '<M-S-F>',
+            open_lazy_root_live_grep = '<M-r>g',
+            open_lazy_root_find_files = '<M-r>f',
+            change_cwd_to_plugin = '<M-c>',
+          },
+        },
       },
     }
 
@@ -139,5 +158,6 @@ return { -- Fuzzy Finder (files, lsp, etc)
     end, { desc = '[S]earch [N]eovim files' })
 
     vim.keymap.set('n', '<leader>sn', '<Cmd>Telescope notify<CR>', { desc = '[S]earch [N]otifications' })
+    vim.keymap.set('n', '<leader>sl', '<Cmd>Telescope lazy<CR>', { desc = '[S]earch [L]azy Plugins' })
   end,
 }
