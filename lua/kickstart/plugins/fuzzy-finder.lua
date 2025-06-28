@@ -23,6 +23,9 @@ return { -- Fuzzy Finder (files, lsp, etc)
 
     -- Lazy plugins related info
     'tsakirist/telescope-lazy.nvim',
+
+    -- Emoji picker
+    'nvim-telescope/telescope-symbols.nvim',
   },
   config = function()
     -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -140,6 +143,9 @@ return { -- Fuzzy Finder (files, lsp, etc)
     vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
     vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
     vim.keymap.set('n', '<leader>sc', builtin.oldfiles, { desc = '[S]earch [C]losed Files' })
+    vim.keymap.set('n', '<leader>se', function()
+      builtin.symbols { sources = { 'emoji' } }
+    end, { desc = '[S]earch [C]losed Files' })
 
     vim.keymap.set('n', '<leader>/', builtin.current_buffer_fuzzy_find, { desc = '[/] Fuzzily search in current buffer' })
 
