@@ -26,6 +26,8 @@ return { -- Fuzzy Finder (files, lsp, etc)
 
     -- Emoji picker
     'nvim-telescope/telescope-symbols.nvim',
+
+    'nvim-telescope/telescope-github.nvim',
   },
   config = function()
     -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -129,6 +131,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     -- Enable Telescope extensions if they are installed
     pcall(require('telescope').load_extension, 'fzf')
     pcall(require('telescope').load_extension, 'ui-select')
+    pcall(require('telescope').load_extension, 'gh')
     -- pcall(require('telescope').load_extension 'rest')
 
     -- See `:help telescope.builtin`
