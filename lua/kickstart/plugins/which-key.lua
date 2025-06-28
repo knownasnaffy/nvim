@@ -55,6 +55,15 @@ return { -- Useful plugin to show you pending keybinds.
         },
       },
       {
+        '<leader>cc',
+        group = '[C]olors',
+        mode = { 'n', 'x' },
+        icon = {
+          icon = '',
+          color = 'purple',
+        },
+      },
+      {
         '<leader>a',
         group = '[A]PI testing',
         mode = { 'n' },
