@@ -99,7 +99,7 @@ end, { desc = 'Git [M]ergetool for conflicts' })
 map('n', '<leader>gd', function()
   vim.ui.input({ prompt = 'Discard changes in current file? (y/n): ' }, function(input)
     if input and input:lower() == 'y' then
-      vim.cmd 'G read'
+      vim.cmd 'G checkout -- %'
       print('Changes discarded: ' .. vim.fn.expand '%')
     else
       print 'Discard canceled.'
