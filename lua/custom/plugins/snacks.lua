@@ -5,7 +5,7 @@ return {
   lazy = false,
   keys = {
     {
-      '<leader>gb',
+      '<leader>gB',
       function()
         Snacks.gitbrowse()
       end,

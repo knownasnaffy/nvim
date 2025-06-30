@@ -74,7 +74,7 @@ map('n', '<leader>gs', function()
 end, { desc = 'Git [S]tatus (Telescope)' })
 
 -- Branch Navigation
-map('n', '<leader>gB', function()
+map('n', '<leader>gb', function()
   vim.cmd 'Telescope git_branches'
 end, { desc = 'Git [B]ranches' })
 
