@@ -18,10 +18,10 @@ map({ 'n', 'x' }, '<leader>j', '^', { desc = 'Move to the first non-blank charac
 map({ 'n', 'x' }, '<leader>;', '$', { desc = 'Move to the last character in the line' })
 
 -- Movement between wrapped lines
-map({ 'n', 'x' }, 'k', 'gj', { desc = 'Move down by display line' })
-map({ 'n', 'x' }, 'l', 'gk', { desc = 'Move up by display line' })
-map({ 'n', 'x' }, 'j', 'h')
-map({ 'n', 'x' }, ';', 'l')
+map({ 'n', 'x', 'o' }, 'k', 'gj', { desc = 'Move down by display line' })
+map({ 'n', 'x', 'o' }, 'l', 'gk', { desc = 'Move up by display line' })
+map({ 'n', 'x', 'o' }, 'j', 'h')
+map({ 'n', 'x', 'o' }, ';', 'l')
 map('n', '0', 'g0', { desc = 'Move to beginning of display line' })
 map('n', '$', 'g$', { desc = 'Move to end of display line' })
 
