@@ -33,7 +33,7 @@ map({ 'n', 'x', 'i' }, '<A-p>', '<C-p>')
 map({ 'v', 'i' }, '<A-q>', '<Esc>')
 
 -- Movement in insert and command-line mode
-map({ 'c' }, '<A-q>', '<Bs>')
+map({ 'c' }, '<A-q>', '<C-u><Esc>')
 map({ 'c', 'i' }, '<A-w>', '<C-w>')
 map({ 'c', 'i' }, '<A-d>', '<C-Del>')
 map({ 'c', 'i' }, '<A-j>', '<Left>')
