@@ -1,1 +1,1 @@
-return { 'tpope/vim-sleuth' } -- Detect tabstop and shiftwidth automatically
+return { 'NMAC427/guess-indent.nvim' } -- Detect tabstop and shiftwidth automatically
