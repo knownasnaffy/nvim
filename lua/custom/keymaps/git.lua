@@ -78,11 +78,7 @@ map('n', '<leader>gb', function()
   vim.cmd 'Telescope git_branches'
 end, { desc = 'Git [B]ranches' })
 
--- Commit & File History
-map('n', '<leader>gh', function()
-  vim.cmd 'Telescope git_commits'
-end, { desc = 'Git [H]istory (commits)' })
-
+-- File History
 map('n', '<leader>gf', function()
   vim.cmd 'Telescope git_bcommits'
 end, { desc = 'Git [F]ile history' })
