@@ -1,8 +1,9 @@
 return { -- Autocompletion
-  'hrsh7th/nvim-cmp',
-  event = 'InsertEnter',
+  'saghen/blink.cmp',
+  event = 'VimEnter',
+  version = '1.*',
   dependencies = {
-    -- Snippet Engine & its associated nvim-cmp source
+    -- Snippet Engine
     {
       'L3MON4D3/LuaSnip',
       build = (function()
@@ -26,102 +27,103 @@ return { -- Autocompletion
         },
       },
     },
-    'saadparwaiz1/cmp_luasnip',
-
-    -- Adds other completion capabilities.
-    --  nvim-cmp does not ship with all sources by default. They are split
-    --  into multiple repos for maintenance purposes.
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-path',
-    'onsails/lspkind.nvim',
-    'hrsh7th/cmp-nvim-lsp-signature-help',
+    'folke/lazydev.nvim',
   },
-  config = function()
-    -- See `:help cmp`
-    local cmp = require 'cmp'
-    local luasnip = require 'luasnip'
-    local lspkind = require 'lspkind'
-    luasnip.config.setup {}
-
-    cmp.setup {
-      snippet = {
-        expand = function(args)
-          luasnip.lsp_expand(args.body)
-        end,
-      },
-
-      completion = { completeopt = 'menu,menuone,noinsert' },
-
-      formatting = {
-        format = lspkind.cmp_format(),
-      },
-
-      -- view = {
-      --   entries = 'native', -- can be "custom", "wildmenu" or "native"
-      -- },
-
-      -- For an understanding of why these mappings were
-      -- chosen, you will need to read `:help ins-completion`
+  --- @module 'blink.cmp'Add commentMore actions
+  --- @type blink.cmp.Config
+  opts = {
+    keymap = {
+      -- 'default' (recommended) for mappings similar to built-in completions
+      --   <c-y> to accept ([y]es) the completion.
+      --    This will auto-import if your LSP supports it.
+      --    This will expand snippets if the LSP sent a snippet.
+      -- 'super-tab' for tab to accept
+      -- 'enter' for enter to accept
+      -- 'none' for no mappings
+      --
+      -- For an understanding of why the 'default' preset is recommended,
+      -- you will need to read `:help ins-completion`
       --
       -- No, but seriously. Please read `:help ins-completion`, it is really good!
-      mapping = cmp.mapping.preset.insert {
-        -- Select the [n]ext item
-        ['<M-k>'] = cmp.mapping.select_next_item(),
-        -- Select the [p]revious item
-        ['<M-l>'] = cmp.mapping.select_prev_item(),
+      --Add commentMore actions
+      -- All presets have the following mappings:
+      -- <tab>/<s-tab>: move to right/left of your snippet expansion
+      -- <c-space>: Open menu or open docs if already open
+      -- <c-n>/<c-p> or <up>/<down>: Select next/previous item
+      -- <c-e>: Hide menu
+      -- <c-k>: Toggle signature help
+      --
+      -- See :h blink-cmp-config-keymap for defining your own keymap
+      preset = 'none',
 
-        -- Scroll the documentation window [b]ack / [f]orward
-        ['<M-b>'] = cmp.mapping.scroll_docs(-4),
-        ['<M-f>'] = cmp.mapping.scroll_docs(4),
+      -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:Add commentMore actions
+      --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
+      ['<M-Space>'] = { 'show', 'show', 'hide_documentation' },
+      ['<CR>'] = { 'accept', 'fallback' },
+      ['<S-CR>'] = { 'fallback' },
+      ['<M-e>'] = { 'cancel', 'fallback' },
+      ['<M-k>'] = { 'select_next', 'fallback' },
+      ['<M-l>'] = { 'select_prev', 'fallback' },
+      ['<M-b>'] = { 'scroll_documentation_up', 'fallback' },
+      ['<M-f>'] = { 'scroll_documentation_down', 'fallback' },
+      ['<M-i>'] = { 'snippet_forward', 'fallback' },
+      ['<M-o>'] = { 'snippet_backward', 'fallback' },
+    },
 
-        -- Accept ([y]es) the completion.
-        --  This will auto-import if your LSP supports it.
-        --  This will expand snippets if the LSP sent a snippet.
-        -- ['<C-y>'] = cmp.mapping.confirm { select = true },
+    cmdline = {
+      keymap = { preset = 'inherit' },
+      completion = { menu = { auto_show = true } },
+    },
 
-        -- If you prefer more traditional completion keymaps,
-        -- you can uncomment the following lines
-        ['<CR>'] = cmp.mapping.confirm { select = true },
+    term = {
+      enabled = false,
+    },
 
-        -- Manually trigger a completion from nvim-cmp.
-        --  Generally you don't need this, because nvim-cmp will display
-        --  completions whenever it has completion options available.
-        -- ['<S-Space>'] = cmp.mapping.complete {},
-        ['<M-Space>'] = cmp.mapping.complete {},
+    appearance = {
+      -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+      -- Adjusts spacing to ensure icons are aligned
+      nerd_font_variant = 'mono',
+    },
 
-        -- Think of <c-l> as moving to the right of your snippet expansion.
-        --  So if you have a snippet that's like:
-        --  function $name($args)
-        --    $body
-        --  end
-        --
-        -- <c-l> will move you to the right of each of the expansion locations.
-        -- <c-h> is similar, except moving you backwards.
-        ['<M-i>'] = cmp.mapping(function()
-          if luasnip.expand_or_locally_jumpable() then
-            luasnip.expand_or_jump()
-          end
-        end, { 'i', 's' }),
-        ['<M-o>'] = cmp.mapping(function()
-          if luasnip.locally_jumpable(-1) then
-            luasnip.jump(-1)
-          end
-        end, { 'i', 's' }),
+    completion = {
+      -- By default, you may press `<c-space>` to show the documentation.
+      -- Optionally, set `auto_show = true` to show the documentation after a delay.
+      documentation = { auto_show = true, auto_show_delay_ms = 500 },
+      menu = {
+        -- Automatically show the completion menu
+        auto_show = false,
 
-        -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
-        --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
-      },
-      sources = {
-        {
-          name = 'lazydev',
-          -- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
-          group_index = 0,
+        -- nvim-cmp style menu
+        draw = {
+          columns = {
+            { 'label', 'label_description', gap = 1 },
+            { 'kind_icon', 'kind', gap = 1 },
+          },
         },
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' },
-        { name = 'path' },
-        { name = 'nvim_lsp_signature_help' },
       },
-    }
-  end,
+
+      ghost_text = { enabled = true, show_with_menu = false },
+    },
+
+    sources = {
+      default = { 'lsp', 'path', 'snippets', 'lazydev' },
+      providers = {
+        lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
+      },
+    },
+
+    snippets = { preset = 'luasnip' },
+
+    -- Blink.cmp includes an optional, recommended rust fuzzy matcher,
+    -- which automatically downloads a prebuilt binary when enabled.
+    --
+    -- By default, we use the Lua implementation instead, but you may enable
+    -- the rust implementation via `'prefer_rust_with_warning'`
+    --
+    -- See :h blink-cmp-config-fuzzy for more information
+    fuzzy = { implementation = 'prefer_rust_with_warning' },
+
+    -- Shows a signature help window while you type arguments for a function
+    signature = { enabled = true },
+  },
 }
