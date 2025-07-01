@@ -148,7 +148,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     vim.keymap.set('n', '<leader>sc', builtin.oldfiles, { desc = '[S]earch [C]losed Files' })
     vim.keymap.set('n', '<leader>se', function()
       builtin.symbols { sources = { 'emoji' } }
-    end, { desc = '[S]earch [C]losed Files' })
+    end, { desc = '[S]earch [E]mojies' })
 
     vim.keymap.set('n', '<leader>/', builtin.current_buffer_fuzzy_find, { desc = '[/] Fuzzily search in current buffer' })
 
