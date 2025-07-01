@@ -31,7 +31,7 @@ vim.o.linebreak = true
 vim.o.breakindent = true
 
 -- Fold
-vim.o.foldmethod = 'expr'
+vim.o.foldmethod = 'manual'
 vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.o.foldlevelstart = 99
 vim.o.foldtext = 'v:lua.custom_fold_text()'
