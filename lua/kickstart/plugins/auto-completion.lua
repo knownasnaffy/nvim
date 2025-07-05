@@ -75,6 +75,7 @@ return { -- Autocompletion
     cmdline = {
       keymap = { preset = 'inherit' },
       completion = { menu = { auto_show = true } },
+      sources = { 'cmdline' },
     },
 
     term = {
