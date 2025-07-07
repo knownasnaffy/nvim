@@ -34,6 +34,9 @@ return { -- Autocompletion
   --- @module 'blink.cmp'Add commentMore actions
   --- @type blink.cmp.Config
   opts = {
+    enabled = function()
+      return not vim.tbl_contains({ 'norg' }, vim.bo.filetype)
+    end,
     keymap = {
       -- 'default' (recommended) for mappings similar to built-in completions
       --   <c-y> to accept ([y]es) the completion.

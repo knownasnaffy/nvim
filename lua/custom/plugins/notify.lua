@@ -1,6 +1,7 @@
 return {
   'rcarriga/nvim-notify',
+  pin = true,
   opts = {
-    top_down = false,
+    top_down = true,
   },
 }
