@@ -10,10 +10,6 @@ return { -- Statusline and Tabline
     statusline_theme.terminal.a.gui = 'bold'
     statusline_theme.visual.a.gui = 'bold'
 
-    local statusline_section_z = function() -- Make separator `\` color same as section color
-      return '󰦖 %{strftime("%H:%M")}'
-    end
-
     require('lualine').setup {
       options = {
         section_separators = { left = ' ', right = ' ' },
@@ -100,7 +96,7 @@ return { -- Statusline and Tabline
         },
         lualine_y = { { 'progress', icon = '󰦕', padding = { left = 2, right = 1 } }, { '%l:%c', icon = '', padding = { left = 1, right = 1 } } },
         -- <line number>:<column number>
-        lualine_z = { { statusline_section_z, padding = { left = 2, right = 2 } } },
+        lualine_z = { { '%L', icon = '', padding = { left = 2, right = 2 } } },
       },
       inactive_sections = {
         lualine_a = {},
