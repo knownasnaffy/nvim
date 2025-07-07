@@ -83,6 +83,12 @@ return { -- Statusline and Tabline
           },
         },
         lualine_x = {
+          {
+            'searchcount',
+            icon = '',
+            color = { fg = '#e0af68' },
+            padding = { left = 2, right = 1 },
+          },
           { -- Recording status
             ---@diagnostic disable-next-line:undefined-field
             require('noice').api.status.mode.get,
@@ -91,7 +97,7 @@ return { -- Statusline and Tabline
               return package.loaded['noice'] and require('noice').api.status.mode.has()
             end,
             color = { fg = '#bb9af7' },
-            padding = { left = 2, right = 2 },
+            padding = { left = 1, right = 1 },
           },
         },
         lualine_y = { { 'progress', icon = '󰦕', padding = { left = 2, right = 1 } }, { '%l:%c', icon = '', padding = { left = 1, right = 1 } } },
