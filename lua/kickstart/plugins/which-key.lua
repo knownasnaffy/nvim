@@ -63,6 +63,34 @@ return { -- Useful plugin to show you pending keybinds.
           color = 'green',
         },
       },
+      {
+        '<leader>n',
+        group = '[N]eorg',
+        mode = { 'n' },
+        icon = {
+          icon = '',
+          color = 'purple',
+        },
+      },
+      {
+        '<leader>l',
+        group = '[L]ist',
+        mode = { 'n' },
+        icon = {
+          icon = '',
+          color = 'purple',
+        },
+      },
+      {
+        '<leader>i',
+        group = '[I]nsert',
+        mode = { 'n' },
+        icon = {
+          icon = '',
+          color = 'purple',
+        },
+      },
+      {
         '<leader>cc',
         group = '[C]olors',
         mode = { 'n', 'x' },
