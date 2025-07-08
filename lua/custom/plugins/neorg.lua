@@ -21,6 +21,7 @@ return {
               interpreter = 'bun',
             },
           },
+          display = { 'NvimNotify' },
         }
         vim.keymap.set({ 'n', 'x' }, '<leader>Sr', '<Cmd>SnipRun<CR>', { desc = '[R]un the snippet from selection' })
         vim.keymap.set({ 'n', 'x' }, '<leader>SR', '<Cmd>SnipReset<CR>', { desc = '[R]eset/end all snippet processes' })
