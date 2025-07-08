@@ -56,7 +56,7 @@ return {
       callback = function()
         vim.opt_local.conceallevel = 2
         vim.opt_local.concealcursor = 'n'
-        map('n', '<leader>nt', '<Cmd>Neorg toc<CR>')
+        map('n', '<leader>nt', '<Cmd>Neorg toc<CR>', { desc = 'Open [T]OC' })
         map('n', '<M-Space>', '<Plug>(neorg.qol.todo-items.todo.task-cycle)')
         map('i', '<M-Space>', '<Cmd>Telescope neorg insert_link<CR>')
       end,
