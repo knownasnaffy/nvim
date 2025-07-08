@@ -55,6 +55,14 @@ return { -- Useful plugin to show you pending keybinds.
         },
       },
       {
+        '<leader>S',
+        group = '[S]nippet',
+        mode = { 'n', 'x' },
+        icon = {
+          icon = '',
+          color = 'green',
+        },
+      },
         '<leader>cc',
         group = '[C]olors',
         mode = { 'n', 'x' },
