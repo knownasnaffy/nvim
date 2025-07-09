@@ -30,3 +30,16 @@ map('n', '<leader>wL', '<C-w>K', { desc = 'Move current window to the top' })
 map('n', '<leader>wq', '<C-w>q', { desc = 'Close current window' })
 map('n', '<leader>woq', '<C-w>o', { desc = 'Close other windows' })
 map('n', '<leader>waq', '<Cmd>qa<CR>', { desc = 'Close all windows' })
+
+-- Tabs
+vim.api.nvim_create_autocmd('FileType', {
+  callback = function(args)
+    local ft = vim.bo[args.buf].filetype
+    if ft ~= 'norg' then
+      vim.keymap.set('n', '<leader>wtn', '<Cmd>tabnew<CR>', { buffer = args.buf, desc="[N]ew tab" })
+      vim.keymap.set('n', '<leader>wtc', '<Cmd>tabclose<CR>', { buffer = args.buf, desc="[C]lose tab" })
+      vim.keymap.set('n', '<leader>wt;', '<Cmd>tabn<CR>', { buffer = args.buf, desc="Previous tab" })
+      vim.keymap.set('n', '<leader>wtj', '<Cmd>tabN<CR>', { buffer = args.buf, desc="Next tab" })
+    end
+  end,
+})
