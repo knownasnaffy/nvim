@@ -107,10 +107,6 @@ return { -- Autoformat
         },
       },
     }
-    vim.api.nvim_create_autocmd('BufWritePost', {
-      pattern = '*', -- Apply to all file types, or specify a pattern like "*.lua"
-      command = 'FormatWrite',
-    })
-    vim.keymap.set('n', '<leader>f', '<Cmd>Format<CR>', { desc = '[F]ormat buffer' })
+    vim.keymap.set('n', '<M-s>', '<Cmd>w | FormatWrite<CR>', { desc = '[F]ormat buffer' })
   end,
 }
