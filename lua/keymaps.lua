@@ -9,6 +9,7 @@ map('n', '<M-r>', '<C-r>')
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 map('n', '<Esc>', '<cmd>nohlsearch<CR>')
+map('n', '<M-h>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
 map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
