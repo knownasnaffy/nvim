@@ -100,9 +100,9 @@ return { -- Statusline and Tabline
             padding = { left = 1, right = 1 },
           },
         },
-        lualine_y = { { 'progress', icon = '󰦕', padding = { left = 2, right = 1 } }, { '%l:%c', icon = '', padding = { left = 1, right = 1 } } },
+        lualine_y = { { 'progress', icon = '󰦕', padding = { left = 2, right = 1 } } },
         -- <line number>:<column number>
-        lualine_z = { { '%L', icon = '', padding = { left = 2, right = 2 } } },
+        lualine_z = { { '%l:%c', icon = '', padding = { left = 2, right = 2 } } },
       },
       inactive_sections = {
         lualine_a = {},
