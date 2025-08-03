@@ -30,6 +30,7 @@ return { -- Autocompletion
     },
     'folke/lazydev.nvim',
     'moyiz/blink-emoji.nvim',
+    'fang2hou/blink-copilot',
   },
   --- @module 'blink.cmp'Add commentMore actions
   --- @type blink.cmp.Config
@@ -112,7 +113,7 @@ return { -- Autocompletion
     },
 
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'lazydev', 'emoji' },
+      default = { 'lsp', 'path', 'snippets', 'lazydev', 'emoji', 'copilot' },
       providers = {
         lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
         emoji = {
@@ -134,6 +135,12 @@ return { -- Autocompletion
               vim.o.filetype
             )
           end,
+        },
+        copilot = {
+          name = 'copilot',
+          module = 'blink-copilot',
+          score_offset = 100,
+          async = true,
         },
       },
     },

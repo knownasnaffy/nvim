@@ -1,6 +1,6 @@
 return { -- Statusline and Tabline
   'nvim-lualine/lualine.nvim',
-  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  dependencies = { 'nvim-tree/nvim-web-devicons', { 'AndreM222/copilot-lualine' } },
   config = function()
     local statusline_theme = require 'lualine.themes.auto'
 
@@ -97,6 +97,11 @@ return { -- Statusline and Tabline
               return package.loaded['noice'] and require('noice').api.status.mode.has()
             end,
             color = { fg = '#bb9af7' },
+            padding = { left = 1, right = 1 },
+          },
+          {
+            'copilot',
+            show_count = true,
             padding = { left = 1, right = 1 },
           },
         },
