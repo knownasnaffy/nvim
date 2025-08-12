@@ -99,6 +99,9 @@ return { -- Autoformat
         rust = {
           require('formatter.filetypes.rust').rustfmt(),
         },
+        xml = {
+          require('formatter.filetypes.xml').xmlformat,
+        },
         -- Use the special "*" filetype for defining formatter configurations on
         -- any filetype
         ['*'] = {
