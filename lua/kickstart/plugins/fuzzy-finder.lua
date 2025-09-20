@@ -59,7 +59,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
         borderchars = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
         results_title = '',
         prompt_title = '',
-        file_ignore_patterns = { '.git/', 'venv/', 'node_modules/' },
+        file_ignore_patterns = { '.git/', 'venv/', 'node_modules/', '.next/' },
         mappings = {
           i = {
             ['<M-l>'] = 'move_selection_previous',
