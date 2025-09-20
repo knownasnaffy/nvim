@@ -45,3 +45,4 @@ require 'custom.clickup'
 
 -- Load other features
 require 'custom.features.lsp'
+require 'custom.features.editorconfig'
