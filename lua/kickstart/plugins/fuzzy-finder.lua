@@ -59,7 +59,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
         borderchars = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
         results_title = '',
         prompt_title = '',
-        file_ignore_patterns = { '.git/', 'venv/' },
+        file_ignore_patterns = { '.git/', 'venv/', 'node_modules/' },
         mappings = {
           i = {
             ['<M-l>'] = 'move_selection_previous',
@@ -89,6 +89,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
       pickers = {
         find_files = {
           hidden = true,
+          no_ignore = true,
         },
         git_branches = {
           mappings = {
