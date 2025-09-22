@@ -28,6 +28,9 @@ return { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope-symbols.nvim',
 
     'nvim-telescope/telescope-github.nvim',
+
+    -- Images
+    'dharmx/telescope-media.nvim',
   },
   config = function()
     -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -126,6 +129,12 @@ return { -- Fuzzy Finder (files, lsp, etc)
             change_cwd_to_plugin = '<M-c>',
           },
         },
+        media = {
+          backend = 'ueberzug',
+          flags = {
+            ueberzug = { xmove = -22, ymove = -3, warnings = true, supress_backend_warning = false },
+          },
+        },
       },
     }
 
@@ -133,6 +142,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     pcall(require('telescope').load_extension, 'fzf')
     pcall(require('telescope').load_extension, 'ui-select')
     pcall(require('telescope').load_extension, 'gh')
+    pcall(require('telescope').load_extension, 'media_files')
     -- pcall(require('telescope').load_extension 'rest')
 
     -- See `:help telescope.builtin`
