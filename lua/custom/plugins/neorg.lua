@@ -59,10 +59,11 @@ return {
         vim.opt_local.conceallevel = 2
         vim.opt_local.concealcursor = 'n'
         map('n', '<leader>nt', '<Cmd>Neorg toc<CR>', { desc = 'Open [T]OC' })
-        map('n', '<leader>ni', '<Cmd>Neorg index<CR>', { desc = 'Open [I]ndex file' })
         map('n', '<M-Space>', '<Plug>(neorg.qol.todo-items.todo.task-cycle)')
         map('i', '<M-Space>', '<Cmd>Telescope neorg insert_link<CR>')
       end,
     })
+
+    map('n', '<leader>ni', '<Cmd>Neorg index<CR>', { desc = 'Open [I]ndex file' })
   end,
 }
