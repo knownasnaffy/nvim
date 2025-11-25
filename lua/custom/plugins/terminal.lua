@@ -8,6 +8,36 @@ return {
       desc = 'Toggle terminal',
       mode = { 'n', 't' },
     },
+    {
+      '<M-t>1',
+      '<Cmd>1ToggleTerm<CR>',
+      desc = 'Toggle terminal 1',
+      mode = { 'n', 't' },
+    },
+    {
+      '<M-t>2',
+      '<Cmd>2ToggleTerm<CR>',
+      desc = 'Toggle terminal 2',
+      mode = { 'n', 't' },
+    },
+    {
+      '<M-t>3',
+      '<Cmd>3ToggleTerm<CR>',
+      desc = 'Toggle terminal 3',
+      mode = { 'n', 't' },
+    },
+    {
+      '<M-t>4',
+      '<Cmd>4ToggleTerm<CR>',
+      desc = 'Toggle terminal 4',
+      mode = { 'n', 't' },
+    },
+    {
+      '<M-t>5',
+      '<Cmd>5ToggleTerm<CR>',
+      desc = 'Toggle terminal 5',
+      mode = { 'n', 't' },
+    },
   },
   opts = {--[[ things you want to change go here]]
     size = function(term)
