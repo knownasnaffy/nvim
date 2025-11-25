@@ -97,7 +97,7 @@ end, { desc = 'Git [M]ergetool for conflicts' })
 
 -- Discard Changes (Prompt Before Execution)
 map('n', '<leader>gd', function()
-  vim.ui.input({ prompt = 'Discard changes in current file? (y/n): ' }, function(input)
+  vim.ui.input({ prompt = 'Discard changes in current file? (y/n): ', default = 'y' }, function(input)
     if input and input:lower() == 'y' then
       vim.cmd 'G checkout -- %'
       print('Changes discarded: ' .. vim.fn.expand '%')
