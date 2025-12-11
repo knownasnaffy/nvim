@@ -193,19 +193,19 @@ return {
       -- ts_ls = {},
       --
       -- Tailwindcss
-      tailwindcss = {},
-
-      pylsp = {},
-
-      cssls = {
-        settings = {
-          css = {
-            lint = {
-              unknownAtRules = 'ignore',
-            },
-          },
-        },
-      },
+      -- tailwindcss = {},
+      --
+      -- pylsp = {},
+      --
+      -- cssls = {
+      --   settings = {
+      --     css = {
+      --       lint = {
+      --         unknownAtRules = 'ignore',
+      --       },
+      --     },
+      --   },
+      -- },
 
       lua_ls = {
         -- cmd = { ... },
@@ -228,10 +228,10 @@ return {
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
       'stylua', -- Used to format Lua code
-      'prettier', -- Used to format typescript/javascript code
-      'beautysh', -- For shell files
-      'taplo', -- For toml files
-      'black', -- For python formatting
+      -- 'prettier', -- Used to format typescript/javascript code
+      -- 'beautysh', -- For shell files
+      -- 'taplo', -- For toml files
+      -- 'black', -- For python formatting
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
