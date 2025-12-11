@@ -21,16 +21,16 @@ return {
       -- You can create configuration for ceartain filetype by creating another field (markdown, in this case)
       -- If you're uncertain what to name your field to, you can run `lua print(vim.bo.filetype)`
       -- Missing options from `markdown` field will be replaced by options from `default` field
-      markdown = {
-        img_dir = function()
-          return 'public/' .. getFileName()
-        end,
-        img_dir_txt = getFileName,
-        -- img_handler = function(img) -- New feature from PR #22
-        --   local script = string.format('./image_compressor.sh "%s"', img.path)
-        --   os.execute(script)
-        -- end,
-      },
+      -- markdown = {
+      --   img_dir = function()
+      --     return 'public/' .. getFileName()
+      --   end,
+      --   img_dir_txt = getFileName,
+      --   -- img_handler = function(img) -- New feature from PR #22
+      --   --   local script = string.format('./image_compressor.sh "%s"', img.path)
+      --   --   os.execute(script)
+      --   -- end,
+      -- },
     }
 
     vim.keymap.set({ 'n', 'v' }, '<leader>p', '<cmd>PasteImg<CR>')
