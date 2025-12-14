@@ -36,6 +36,19 @@ vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.o.foldlevelstart = 99
 vim.o.foldtext = 'v:lua.custom_fold_text()'
 
+vim.g.clipboard = {
+  name = 'win_clipboard',
+  copy = {
+    ['+'] = 'clip.exe',
+    ['*'] = 'clip.exe',
+  },
+  paste = {
+    ['+'] = '/bin/win32yank.exe -o --lf',
+    ['*'] = '/bin/win32yank.exe -o --lf',
+  },
+  cache_enabled = 0,
+}
+
 function _G.custom_fold_text()
   local line = vim.fn.getline(vim.v.foldstart) -- Get first line of fold
   local fold_size = vim.v.foldend - vim.v.foldstart + 1 -- Number of folded lines
