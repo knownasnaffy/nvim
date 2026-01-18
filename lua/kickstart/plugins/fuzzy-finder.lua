@@ -100,7 +100,9 @@ return { -- Fuzzy Finder (files, lsp, etc)
             '--column',
             '--smart-case',
             '--hidden', -- Search hidden files/folders
-            '--no-ignore', -- Ignore .gitignore/.ignore
+            '--glob',
+            '!bun.lock',
+            -- '--no-ignore', -- Ignore .gitignore/.ignore
           },
         },
         git_branches = {
