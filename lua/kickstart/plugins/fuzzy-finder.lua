@@ -28,6 +28,20 @@ return { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope-symbols.nvim',
 
     'nvim-telescope/telescope-github.nvim',
+
+    {
+      'nvim-telescope/telescope-live-grep-args.nvim',
+      -- This will not install any breaking changes.
+      -- For major updates, this must be adjusted manually.
+      version = '^1.0.0',
+      keys = {
+        {
+          '<leader>sg',
+          ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
+          desc = '[S]earch by [G]rep',
+        },
+      },
+    },
   },
   config = function()
     -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -140,6 +154,29 @@ return { -- Fuzzy Finder (files, lsp, etc)
             change_cwd_to_plugin = '<M-c>',
           },
         },
+        live_grep_args = {
+          vimgrep_arguments = {
+            'rg',
+            '--color=never',
+            '--no-heading',
+            '--with-filename',
+            '--line-number',
+            '--column',
+            '--smart-case',
+            '--hidden', -- Search hidden files/folders
+            '--glob',
+            '!bun.lock',
+            -- '--no-ignore', -- Ignore .gitignore/.ignore
+          },
+          mappings = {
+            i = {
+              ['<M-r>'] = require('telescope-live-grep-args.actions').quote_prompt(),
+              ['<M-i>'] = require('telescope-live-grep-args.actions').quote_prompt { postfix = ' --iglob ' },
+              -- freeze the current list and start a fuzzy search in the frozen list
+              ['<M-space>'] = require('telescope-live-grep-args.actions').to_fuzzy_refine,
+            },
+          },
+        },
       },
     }
 
@@ -147,6 +184,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     pcall(require('telescope').load_extension, 'fzf')
     pcall(require('telescope').load_extension, 'ui-select')
     pcall(require('telescope').load_extension, 'gh')
+    pcall(require('telescope').load_extension, 'live_grep_args')
     -- pcall(require('telescope').load_extension 'rest')
 
     -- See `:help telescope.builtin`
@@ -156,7 +194,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
     vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
     vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
-    vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
+    -- vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
     vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
     vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
     vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
