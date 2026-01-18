@@ -188,6 +188,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     pcall(require('telescope').load_extension, 'gh')
     pcall(require('telescope').load_extension, 'live_grep_args')
     pcall(require('telescope').load_extension, 'heading')
+    require('http_codes').setup()
     -- pcall(require('telescope').load_extension 'rest')
 
     -- See `:help telescope.builtin`
