@@ -42,6 +42,8 @@ return { -- Fuzzy Finder (files, lsp, etc)
         },
       },
     },
+
+    'crispgm/telescope-heading.nvim',
   },
   config = function()
     -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -185,6 +187,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     pcall(require('telescope').load_extension, 'ui-select')
     pcall(require('telescope').load_extension, 'gh')
     pcall(require('telescope').load_extension, 'live_grep_args')
+    pcall(require('telescope').load_extension, 'heading')
     -- pcall(require('telescope').load_extension 'rest')
 
     -- See `:help telescope.builtin`
@@ -221,5 +224,6 @@ return { -- Fuzzy Finder (files, lsp, etc)
 
     vim.keymap.set('n', '<leader>sn', '<Cmd>Telescope notify<CR>', { desc = '[S]earch [N]otifications' })
     vim.keymap.set('n', '<leader>sl', '<Cmd>Telescope lazy<CR>', { desc = '[S]earch [L]azy Plugins' })
+    vim.keymap.set('n', '<leader>sH', '<Cmd>Telescope heading<CR>', { desc = '[S]earch [H]eadings' })
   end,
 }
