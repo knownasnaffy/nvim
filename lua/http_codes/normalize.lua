@@ -13,7 +13,8 @@ function M.html_to_text(html)
 
   -- Convert headers with proper spacing
   text = text:gsub('<h([1-6])[^>]*>', function(level)
-    local prefix = string.rep('#', tonumber(level))
+    local num = tonumber(level) or 1
+    local prefix = string.rep('#', num)
     return '\n' .. prefix .. ' '
   end)
   text = text:gsub('</h[1-6]>', '\n\n')

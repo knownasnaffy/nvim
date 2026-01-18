@@ -36,9 +36,9 @@ function M.show_picker()
           local lines = vim.split(status.content.plain_text, '\n')
 
           vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, lines)
-          vim.api.nvim_buf_set_option(self.state.bufnr, 'filetype', 'markdown')
-          vim.api.nvim_win_set_option(self.state.winid, 'wrap', true)
-          vim.api.nvim_win_set_option(self.state.winid, 'conceallevel', 0)
+          vim.bo[self.state.bufnr].filetype = 'markdown'
+          vim.wo[self.state.winid].wrap = true
+          vim.wo[self.state.winid].conceallevel = 0
         end,
       },
     })
