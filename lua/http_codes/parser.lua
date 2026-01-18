@@ -1,40 +1,42 @@
 local M = {}
 
-local normalize = require('http_codes.normalize')
+local normalize = require 'http_codes.normalize'
 
 local RFC_URL = 'https://datatracker.ietf.org/doc/html/rfc9110'
 
 function M.parse_html(html)
   -- Use simple string search to find section-15 since Tree-sitter parsing has issues
-  local section_start = html:find('<section[^>]*id="section%-15"[^>]*>')
+  local section_start = html:find '<section[^>]*id="section%-15"[^>]*>'
   if not section_start then
-    error('Could not find section-15 in RFC 9110')
+    error 'Could not find section-15 in RFC 9110'
   end
-  
+
   -- Find the end of this section by counting nested sections
   local section_end = M.find_section_end(html, section_start)
   local section_html = html:sub(section_start, section_end)
-  
+
   local statuses = M.extract_statuses_from_html(section_html)
-  
+
   return {
     rfc = '9110',
     source = RFC_URL,
     fetched_at = os.time(),
-    statuses = statuses
+    statuses = statuses,
   }
 end
 
 function M.find_section_end(html, start_pos)
   local pos = start_pos
   local section_count = 1
-  
+
   while pos < #html and section_count > 0 do
     local next_start = html:find('<section[^>]*>', pos + 1)
     local next_end = html:find('</section>', pos + 1)
-    
-    if not next_end then break end
-    
+
+    if not next_end then
+      break
+    end
+
     if next_start and next_start < next_end then
       section_count = section_count + 1
       pos = next_start
@@ -46,34 +48,36 @@ function M.find_section_end(html, start_pos)
       end
     end
   end
-  
+
   return #html
 end
 
 function M.extract_statuses_from_html(section_html)
   local statuses = {}
-  
+
   -- Find status class divs (1xx, 2xx, etc.) - more flexible pattern
   local pos = 1
-  
+
   while true do
     local div_start, div_end = section_html:find('<div[^>]*id="status%.[1-5]xx"[^>]*>', pos)
-    if not div_start then 
-      break 
+    if not div_start then
+      break
     end
-    
+
     -- Find the matching closing div
     local content_start = div_end + 1
     local div_count = 1
     local search_pos = content_start
     local class_div_end
-    
+
     while div_count > 0 and search_pos <= #section_html do
       local next_open = section_html:find('<div[^>]*>', search_pos)
       local next_close = section_html:find('</div>', search_pos)
-      
-      if not next_close then break end
-      
+
+      if not next_close then
+        break
+      end
+
       if next_open and next_open < next_close then
         div_count = div_count + 1
         search_pos = next_open + 1
@@ -85,7 +89,7 @@ function M.extract_statuses_from_html(section_html)
         end
       end
     end
-    
+
     if class_div_end then
       local class_div = section_html:sub(div_start, class_div_end)
       local class_statuses = M.extract_status_codes_from_html(class_div)
@@ -93,37 +97,39 @@ function M.extract_statuses_from_html(section_html)
         table.insert(statuses, status)
       end
     end
-    
+
     pos = (class_div_end or div_end) + 1
   end
-  
+
   return statuses
 end
 
 function M.extract_status_codes_from_html(class_html)
   local codes = {}
-  
+
   -- Look for status code divs with correct pattern (dots, not hyphens)
   local pos = 1
-  
+
   while true do
     local div_start, div_end = class_html:find('<div[^>]*id="status%.[0-9][0-9][0-9]"[^>]*>', pos)
-    if not div_start then 
-      break 
+    if not div_start then
+      break
     end
-    
+
     -- Find the matching closing div
     local content_start = div_end + 1
     local div_count = 1
     local search_pos = content_start
     local code_div_end
-    
+
     while div_count > 0 and search_pos <= #class_html do
       local next_open = class_html:find('<div[^>]*>', search_pos)
       local next_close = class_html:find('</div>', search_pos)
-      
-      if not next_close then break end
-      
+
+      if not next_close then
+        break
+      end
+
       if next_open and next_open < next_close then
         div_count = div_count + 1
         search_pos = next_open + 1
@@ -135,7 +141,7 @@ function M.extract_status_codes_from_html(class_html)
         end
       end
     end
-    
+
     if code_div_end then
       local code_div = class_html:sub(div_start, code_div_end)
       local status = M.extract_status_info_from_html(code_div)
@@ -143,48 +149,48 @@ function M.extract_status_codes_from_html(class_html)
         table.insert(codes, status)
       end
     end
-    
+
     pos = (code_div_end or div_end) + 1
   end
-  
+
   return codes
 end
 
 function M.extract_status_info_from_html(code_html)
   -- Find the section inside the status div (as per specification)
-  local section_content = code_html:match('<div[^>]*id="status%.[0-9][0-9][0-9]"[^>]*>%s*<section[^>]*>(.-)</section>')
+  local section_content = code_html:match '<div[^>]*id="status%.[0-9][0-9][0-9]"[^>]*>%s*<section[^>]*>(.-)</section>'
   if not section_content then
     return nil
   end
-  
+
   -- Find h4 with section-name link (handle multiple classes)
-  local title = section_content:match('<a[^>]*class="[^"]*section%-name[^"]*"[^>]*>([^<]+)</a>')
+  local title = section_content:match '<a[^>]*class="[^"]*section%-name[^"]*"[^>]*>([^<]+)</a>'
   if not title then
     return nil
   end
-  
+
   local code, name = M.parse_title(title)
   if not code or not name then
     return nil
   end
-  
+
   -- Extract content (everything after h4)
-  local content_start = section_content:find('</h4>') 
-  if not content_start then 
-    return nil 
+  local content_start = section_content:find '</h4>'
+  if not content_start then
+    return nil
   end
-  
+
   local raw_html = section_content:sub(content_start + 5)
   local plain_text = normalize.html_to_text(raw_html)
-  
+
   return {
     code = code,
     name = name,
     class = code:sub(1, 1) .. 'xx',
     content = {
       plain_text = plain_text,
-      raw_html = raw_html
-    }
+      raw_html = raw_html,
+    },
   }
 end
 
@@ -200,20 +206,21 @@ function M.find_element_with_id_recursive(node, html, tag, id)
       return node
     end
   end
-  
+
   for child in node:iter_children() do
     local found = M.find_element_with_id_recursive(child, html, tag, id)
-    if found then return found end
+    if found then
+      return found
+    end
   end
-  
+
   return nil
 end
-
 
 function M.extract_statuses(section15, html)
   local statuses = {}
   local class_divs = M.find_status_class_divs(section15, html)
-  
+
   for _, class_div in ipairs(class_divs) do
     local class_section = M.find_direct_section_child(class_div, html)
     if class_section then
@@ -223,7 +230,7 @@ function M.extract_statuses(section15, html)
       end
     end
   end
-  
+
   return statuses
 end
 
@@ -237,22 +244,20 @@ function M.find_status_class_divs_recursive(node, html, divs)
   if node:type() == 'element' then
     local tag_name = M.get_tag_name(node, html)
     local id = M.get_attribute(node, html, 'id')
-    if tag_name == 'div' and id and id:match('^status%.[1-5]xx$') then
+    if tag_name == 'div' and id and id:match '^status%.[1-5]xx$' then
       table.insert(divs, node)
     end
   end
-  
+
   for child in node:iter_children() do
     M.find_status_class_divs_recursive(child, html, divs)
   end
 end
 
-
-
 function M.extract_status_codes(class_section, html)
   local codes = {}
   local code_divs = M.find_status_code_divs(class_section, html)
-  
+
   for _, code_div in ipairs(code_divs) do
     local code_section = M.find_direct_section_child(code_div, html)
     if code_section then
@@ -262,7 +267,7 @@ function M.extract_status_codes(class_section, html)
       end
     end
   end
-  
+
   return codes
 end
 
@@ -276,17 +281,15 @@ function M.find_status_code_divs_recursive(node, html, divs)
   if node:type() == 'element' then
     local tag_name = M.get_tag_name(node, html)
     local id = M.get_attribute(node, html, 'id')
-    if tag_name == 'div' and id and id:match('^status%-[0-9][0-9][0-9]$') then
+    if tag_name == 'div' and id and id:match '^status%-[0-9][0-9][0-9]$' then
       table.insert(divs, node)
     end
   end
-  
+
   for child in node:iter_children() do
     M.find_status_code_divs_recursive(child, html, divs)
   end
 end
-
-
 
 function M.find_direct_section_child(parent, html)
   for child in parent:iter_children() do
@@ -302,27 +305,33 @@ end
 
 function M.extract_status_info(status_section, html)
   local h4 = M.find_h4(status_section, html)
-  if not h4 then return nil end
-  
+  if not h4 then
+    return nil
+  end
+
   local section_name_link = M.find_section_name_link(h4, html)
-  if not section_name_link then return nil end
-  
+  if not section_name_link then
+    return nil
+  end
+
   local title_text = M.get_text_content(section_name_link, html)
   local code, name = M.parse_title(title_text)
-  if not code or not name then return nil end
-  
+  if not code or not name then
+    return nil
+  end
+
   local content_nodes = M.get_content_nodes(status_section, html)
   local raw_html = M.nodes_to_html(content_nodes, html)
   local plain_text = normalize.html_to_text(raw_html)
-  
+
   return {
     code = code,
     name = name,
     class = code:sub(1, 1) .. 'xx',
     content = {
       plain_text = plain_text,
-      raw_html = raw_html
-    }
+      raw_html = raw_html,
+    },
   }
 end
 
@@ -353,7 +362,9 @@ function M.find_element_with_class(parent, html, tag, class)
         end
       end
       local found = M.find_element_with_class(child, html, tag, class)
-      if found then return found end
+      if found then
+        return found
+      end
     end
   end
   return nil
@@ -371,8 +382,10 @@ end
 
 function M.parse_title(title)
   local parts = vim.split(title, '%s+', { plain = false })
-  if #parts < 2 then return nil, nil end
-  
+  if #parts < 2 then
+    return nil, nil
+  end
+
   local code = parts[1]
   local name = table.concat(parts, ' ', 2)
   return code, name
@@ -414,7 +427,7 @@ function M.get_tag_name(element, html)
   if element:type() ~= 'element' then
     return nil
   end
-  
+
   local start_tag = element:child(0)
   if start_tag and start_tag:type() == 'start_tag' then
     -- Find the tag_name node among children
@@ -432,12 +445,12 @@ function M.get_attribute(element, html, attr_name)
   if element:type() ~= 'element' then
     return nil
   end
-  
+
   local start_tag = element:child(0)
   if not start_tag or start_tag:type() ~= 'start_tag' then
     return nil
   end
-  
+
   for i = 1, start_tag:child_count() - 1 do
     local attr = start_tag:child(i)
     if attr and attr:type() == 'attribute' then
@@ -460,7 +473,7 @@ function M.get_attribute(element, html, attr_name)
       end
     end
   end
-  
+
   return nil
 end
 
