@@ -90,6 +90,19 @@ return { -- Fuzzy Finder (files, lsp, etc)
         find_files = {
           hidden = true,
         },
+        live_grep = {
+          vimgrep_arguments = {
+            'rg',
+            '--color=never',
+            '--no-heading',
+            '--with-filename',
+            '--line-number',
+            '--column',
+            '--smart-case',
+            '--hidden', -- Search hidden files/folders
+            '--no-ignore', -- Ignore .gitignore/.ignore
+          },
+        },
         git_branches = {
           mappings = {
             i = {
