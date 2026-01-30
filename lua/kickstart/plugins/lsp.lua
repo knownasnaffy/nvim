@@ -13,6 +13,22 @@ return {
 
     -- Allows extra capabilities provided by blink.cmp
     'saghen/blink.cmp',
+
+    -- Toggle lsp clients for a buffer
+    {
+      'adoyle-h/lsp-toggle.nvim',
+      opts = {
+        create_cmds = true, -- Whether to create user commands
+        telescope = true, -- Whether to load telescope extensions
+      },
+      keys = {
+        {
+          '<leader>tl',
+          '<Cmd>ToggleLSP<CR>',
+          desc = '[T]oggle [L]SP',
+        },
+      },
+    },
   },
   config = function()
     -- Brief aside: **What is LSP?**
@@ -221,6 +237,10 @@ return {
           },
         },
       },
+
+      hyprls = {},
+
+      jsonls = {},
     }
 
     -- You can add other tools here that you want Mason to install

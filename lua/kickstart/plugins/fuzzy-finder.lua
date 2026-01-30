@@ -31,6 +31,21 @@ return { -- Fuzzy Finder (files, lsp, etc)
 
     -- Images
     'dharmx/telescope-media.nvim',
+    {
+      'nvim-telescope/telescope-live-grep-args.nvim',
+      -- This will not install any breaking changes.
+      -- For major updates, this must be adjusted manually.
+      version = '^1.0.0',
+      keys = {
+        {
+          '<leader>sg',
+          ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
+          desc = '[S]earch by [G]rep',
+        },
+      },
+    },
+
+    'crispgm/telescope-heading.nvim',
   },
   config = function()
     -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -94,6 +109,21 @@ return { -- Fuzzy Finder (files, lsp, etc)
           hidden = true,
           no_ignore = true,
         },
+        live_grep = {
+          vimgrep_arguments = {
+            'rg',
+            '--color=never',
+            '--no-heading',
+            '--with-filename',
+            '--line-number',
+            '--column',
+            '--smart-case',
+            '--hidden', -- Search hidden files/folders
+            '--glob',
+            '!bun.lock',
+            -- '--no-ignore', -- Ignore .gitignore/.ignore
+          },
+        },
         git_branches = {
           mappings = {
             i = {
@@ -134,6 +164,29 @@ return { -- Fuzzy Finder (files, lsp, etc)
           flags = {
             ueberzug = { xmove = -22, ymove = -3, warnings = true, supress_backend_warning = false },
           },
+          live_grep_args = {
+            vimgrep_arguments = {
+              'rg',
+              '--color=never',
+              '--no-heading',
+              '--with-filename',
+              '--line-number',
+              '--column',
+              '--smart-case',
+              '--hidden', -- Search hidden files/folders
+              '--glob',
+              '!bun.lock',
+              -- '--no-ignore', -- Ignore .gitignore/.ignore
+            },
+            mappings = {
+              i = {
+                ['<M-r>'] = require('telescope-live-grep-args.actions').quote_prompt(),
+                ['<M-i>'] = require('telescope-live-grep-args.actions').quote_prompt { postfix = ' --iglob ' },
+                -- freeze the current list and start a fuzzy search in the frozen list
+                ['<M-space>'] = require('telescope-live-grep-args.actions').to_fuzzy_refine,
+              },
+            },
+          },
         },
       },
     }
@@ -143,6 +196,9 @@ return { -- Fuzzy Finder (files, lsp, etc)
     pcall(require('telescope').load_extension, 'ui-select')
     pcall(require('telescope').load_extension, 'gh')
     pcall(require('telescope').load_extension, 'media_files')
+    pcall(require('telescope').load_extension, 'live_grep_args')
+    pcall(require('telescope').load_extension, 'heading')
+    require('http_codes').setup()
     -- pcall(require('telescope').load_extension 'rest')
 
     -- See `:help telescope.builtin`
@@ -152,7 +208,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
     vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
     vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
-    vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
+    -- vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
     vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
     vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
     vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
@@ -179,5 +235,6 @@ return { -- Fuzzy Finder (files, lsp, etc)
 
     vim.keymap.set('n', '<leader>sn', '<Cmd>Telescope notify<CR>', { desc = '[S]earch [N]otifications' })
     vim.keymap.set('n', '<leader>sl', '<Cmd>Telescope lazy<CR>', { desc = '[S]earch [L]azy Plugins' })
+    vim.keymap.set('n', '<leader>sH', '<Cmd>Telescope heading<CR>', { desc = '[S]earch [H]eadings' })
   end,
 }
