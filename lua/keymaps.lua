@@ -14,6 +14,9 @@ map('n', '<M-h>', '<cmd>nohlsearch<CR>')
 -- Diagnostic keymaps
 map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
+-- Utility keymaps
+map('n', 'vad', 'ggVG', { desc = '[V]isual [A]round [D]ocument' })
+
 -- Git keymaps
 require 'custom.keymaps.git'
 
