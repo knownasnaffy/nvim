@@ -46,26 +46,42 @@ return { -- Fuzzy Finder (files, lsp, etc)
     },
 
     'crispgm/telescope-heading.nvim',
+
+    'ggandor/leap.nvim',
   },
   config = function()
-    -- Telescope is a fuzzy finder that comes with a lot of different things that
-    -- it can fuzzy find! It's more than just a "file finder", it can search
-    -- many different aspects of Neovim, your workspace, LSP, and more!
-    --
-    -- The easiest way to use Telescope, is to start by doing something like:
-    --  :Telescope help_tags
-    --
-    -- After running this command, a window will open up and you're able to
-    -- type in the prompt window. You'll see a list of `help_tags` options and
-    -- a corresponding preview of the help.
-    --
-    -- Two important keymaps to use while in Telescope are:
-    --  - Insert mode: <c-/>
-    --  - Normal mode: ?
-    --
-    -- This opens a window that shows you all of the keymaps for the current
-    -- Telescope picker. This is really useful to discover what Telescope can
-    -- do as well as how to actually do it!
+    local function get_targets(picker)
+      local scroller = require 'telescope.pickers.scroller'
+      local wininfo = vim.fn.getwininfo(picker.results_win)[1]
+      local bottom = wininfo.botline - 2 -- skip the current row
+      local top = math.max(scroller.top(picker.sorting_strategy, picker.max_results, picker.manager:num_results()), wininfo.topline - 1)
+      local targets = {}
+      for lnum = bottom, top, -1 do
+        table.insert(targets, { wininfo = wininfo, pos = { lnum + 1, 1 } })
+      end
+      return targets
+    end
+
+    local function pick_with_leap(buf)
+      local picker = require('telescope.actions.state').get_current_picker(buf)
+      require('leap').leap {
+        targets = get_targets(picker),
+        action = function(target)
+          picker:set_selection(target.pos[1] - 1)
+          require('telescope.actions').select_default(buf)
+        end,
+      }
+    end
+
+    local function select_with_leap(buf)
+      local picker = require('telescope.actions.state').get_current_picker(buf)
+      require('leap').leap {
+        targets = get_targets(picker),
+        action = function(target)
+          picker:set_selection(target.pos[1] - 1)
+        end,
+      }
+    end
 
     -- [[ Configure Telescope ]]
     -- See `:help telescope` and `:help telescope.setup()`
@@ -89,6 +105,8 @@ return { -- Fuzzy Finder (files, lsp, etc)
             ['<M-q>'] = 'close',
             ['<M-/>'] = 'which_key',
             ['<M-w>'] = { '<esc>vbda', type = 'command' },
+            ['<M-p>'] = pick_with_leap,
+            ['<M-P>'] = select_with_leap,
           },
           n = {
             ['<M-l>'] = 'move_selection_previous',
@@ -164,27 +182,27 @@ return { -- Fuzzy Finder (files, lsp, etc)
           flags = {
             ueberzug = { xmove = -22, ymove = -3, warnings = true, supress_backend_warning = false },
           },
-          live_grep_args = {
-            vimgrep_arguments = {
-              'rg',
-              '--color=never',
-              '--no-heading',
-              '--with-filename',
-              '--line-number',
-              '--column',
-              '--smart-case',
-              '--hidden', -- Search hidden files/folders
-              '--glob',
-              '!bun.lock',
-              -- '--no-ignore', -- Ignore .gitignore/.ignore
-            },
-            mappings = {
-              i = {
-                ['<M-r>'] = require('telescope-live-grep-args.actions').quote_prompt(),
-                ['<M-i>'] = require('telescope-live-grep-args.actions').quote_prompt { postfix = ' --iglob ' },
-                -- freeze the current list and start a fuzzy search in the frozen list
-                ['<M-space>'] = require('telescope-live-grep-args.actions').to_fuzzy_refine,
-              },
+        },
+        live_grep_args = {
+          vimgrep_arguments = {
+            'rg',
+            '--color=never',
+            '--no-heading',
+            '--with-filename',
+            '--line-number',
+            '--column',
+            '--smart-case',
+            '--hidden', -- Search hidden files/folders
+            '--glob',
+            '!bun.lock',
+            -- '--no-ignore', -- Ignore .gitignore/.ignore
+          },
+          mappings = {
+            i = {
+              ['<M-r>'] = require('telescope-live-grep-args.actions').quote_prompt(),
+              ['<M-i>'] = require('telescope-live-grep-args.actions').quote_prompt { postfix = ' --iglob ' },
+              -- freeze the current list and start a fuzzy search in the frozen list
+              ['<M-space>'] = require('telescope-live-grep-args.actions').to_fuzzy_refine,
             },
           },
         },
