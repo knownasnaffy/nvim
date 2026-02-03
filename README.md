@@ -3,7 +3,7 @@
 > [!IMPORTANT]
 > This is a hard fork of nvim-lua/kickstart.nvim and has a lot of structural and plugin choice change. I haven't found the time yet to update the readme but it should provide the necessary guidelines to get this config working on any machine (most probably).
 >
-> Caught up with upstream on 23 May 2025
+> Caught up with upstream till 27 January 2026
 
 ## Introduction
 
