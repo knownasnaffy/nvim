@@ -1,15 +1,11 @@
 local M = {}
 
-local function get_nvim_data_path()
-  return vim.fn.stdpath 'data' .. '/clickup_settings.json'
-end
+local function get_nvim_data_path() return vim.fn.stdpath 'data' .. '/clickup_settings.json' end
 
 function M.load_settings()
   local path = get_nvim_data_path()
   local file = io.open(path, 'r')
-  if not file then
-    return {}
-  end
+  if not file then return {} end
   local content = file:read '*a'
   file:close()
   return vim.fn.json_decode(content) or {}

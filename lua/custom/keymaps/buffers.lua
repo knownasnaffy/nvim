@@ -6,12 +6,8 @@ local function buffer_switch(direction)
   vim.cmd((direction == 'next' and 'BufferNext ' or 'BufferPrevious ') .. count)
 end
 
-map('n', '<A-.>', function()
-  buffer_switch 'next'
-end, { desc = 'Go to next buffer' })
-map('n', '<A-,>', function()
-  buffer_switch 'previous'
-end, { desc = 'Go to previous buffer' })
+map('n', '<A-.>', function() buffer_switch 'next' end, { desc = 'Go to next buffer' })
+map('n', '<A-,>', function() buffer_switch 'previous' end, { desc = 'Go to previous buffer' })
 
 -- Re-order to previous/next
 map('n', '<A-S-,>', '<Cmd>BufferMovePrevious<CR>')

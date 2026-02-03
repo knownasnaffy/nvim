@@ -3,13 +3,9 @@
 local client_notifs = {}
 
 local function get_notif_data(client_id, token)
-  if not client_notifs[client_id] then
-    client_notifs[client_id] = {}
-  end
+  if not client_notifs[client_id] then client_notifs[client_id] = {} end
 
-  if not client_notifs[client_id][token] then
-    client_notifs[client_id][token] = {}
-  end
+  if not client_notifs[client_id][token] then client_notifs[client_id][token] = {} end
 
   return client_notifs[client_id][token]
 end
@@ -29,19 +25,13 @@ local function update_spinner(client_id, token)
       replace = notif_data.notification,
     })
 
-    vim.defer_fn(function()
-      update_spinner(client_id, token)
-    end, 100)
+    vim.defer_fn(function() update_spinner(client_id, token) end, 100)
   end
 end
 
-local function format_title(title, client_name)
-  return client_name .. (#title > 0 and ': ' .. title or '')
-end
+local function format_title(title, client_name) return client_name .. (#title > 0 and ': ' .. title or '') end
 
-local function format_message(message, percentage)
-  return (percentage and percentage .. '%\t' or '') .. (message or '')
-end
+local function format_message(message, percentage) return (percentage and percentage .. '%\t' or '') .. (message or '') end
 
 -- LSP integration
 -- Make sure to also have the snippet with the common helper functions in your config!
@@ -51,9 +41,7 @@ vim.lsp.handlers['$/progress'] = function(_, result, ctx)
 
   local val = result.value
 
-  if not val.kind then
-    return
-  end
+  if not val.kind then return end
 
   local notif_data = get_notif_data(client_id, result.token)
 
@@ -92,6 +80,4 @@ local severity = {
   'info',
   'info', -- map both hint and info to info?
 }
-vim.lsp.handlers['window/showMessage'] = function(err, method, params)
-  vim.notify(method.message, severity[params.type])
-end
+vim.lsp.handlers['window/showMessage'] = function(err, method, params) vim.notify(method.message, severity[params.type]) end

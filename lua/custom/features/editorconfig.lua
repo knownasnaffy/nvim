@@ -5,9 +5,7 @@ vim.api.nvim_create_user_command('EditorConfig', function()
   local root_dir = vim.fs.dirname(vim.fs.find(root_patterns, { upward = true })[1])
 
   -- Fallback to current directory if no root found
-  if not root_dir then
-    root_dir = vim.fn.getcwd()
-  end
+  if not root_dir then root_dir = vim.fn.getcwd() end
 
   local editorconfig_path = root_dir .. '/.editorconfig'
 

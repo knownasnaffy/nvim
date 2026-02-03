@@ -5,7 +5,5 @@ return {
   dependencies = {
     'tpope/vim-fugitive',
   },
-  config = function()
-    vim.g.flog_enable_extended_chars = true
-  end,
+  config = function() vim.g.flog_enable_extended_chars = true end,
 }

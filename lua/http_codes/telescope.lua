@@ -24,9 +24,7 @@ function M.show_picker()
       prompt_title = 'HTTP Status Codes (RFC 9110)',
       finder = finders.new_table {
         results = entries,
-        entry_maker = function(entry)
-          return entry
-        end,
+        entry_maker = function(entry) return entry end,
       },
       sorter = conf.generic_sorter {},
       previewer = previewers.new_buffer_previewer {

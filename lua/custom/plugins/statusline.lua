@@ -54,9 +54,7 @@ return { -- Statusline and Tabline
             {
               padding = { left = 2, right = 2 },
             },
-            fmt = function(name)
-              return name ~= '' and (name .. ' ') or ''
-            end,
+            fmt = function(name) return name ~= '' and (name .. ' ') or '' end,
           },
         },
         lualine_c = {

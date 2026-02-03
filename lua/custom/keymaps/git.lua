@@ -69,31 +69,21 @@ map('n', '<leader>gP', function()
 end, { desc = 'Git [P]ull changes from remote' })
 
 -- Git Status (Telescope)
-map('n', '<leader>gs', function()
-  vim.cmd 'Telescope git_status'
-end, { desc = 'Git [S]tatus (Telescope)' })
+map('n', '<leader>gs', function() vim.cmd 'Telescope git_status' end, { desc = 'Git [S]tatus (Telescope)' })
 
 -- Branch Navigation
-map('n', '<leader>gb', function()
-  vim.cmd 'Telescope git_branches'
-end, { desc = 'Git [B]ranches' })
+map('n', '<leader>gb', function() vim.cmd 'Telescope git_branches' end, { desc = 'Git [B]ranches' })
 
 -- File History
-map('n', '<leader>gf', function()
-  vim.cmd 'Telescope git_bcommits'
-end, { desc = 'Git [F]ile history' })
+map('n', '<leader>gf', function() vim.cmd 'Telescope git_bcommits' end, { desc = 'Git [F]ile history' })
 
 -- Git Log (Compact View)
-map('n', '<leader>gl', function()
-  vim.cmd 'Flogsplit -date=relative -auto-update -all'
-end, { desc = 'Git [L]og (compact)' })
+map('n', '<leader>gl', function() vim.cmd 'Flogsplit -date=relative -auto-update -all' end, { desc = 'Git [L]og (compact)' })
 
 -- Merge Conflict Navigation
 map('n', ']x', '/^<<<<<<<\\|=======\\|>>>>>>>\\n', { desc = 'Next merge conflict' })
 map('n', '[x', '?^<<<<<<<\\|=======\\|>>>>>>>\\n', { desc = 'Previous merge conflict' })
-map('n', '<leader>gm', function()
-  vim.cmd 'G mergetool'
-end, { desc = 'Git [M]ergetool for conflicts' })
+map('n', '<leader>gm', function() vim.cmd 'G mergetool' end, { desc = 'Git [M]ergetool for conflicts' })
 
 -- Discard Changes (Prompt Before Execution)
 map('n', '<leader>gd', function()

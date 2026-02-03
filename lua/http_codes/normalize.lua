@@ -1,9 +1,7 @@
 local M = {}
 
 function M.html_to_text(html)
-  if not html or html == '' then
-    return ''
-  end
+  if not html or html == '' then return '' end
 
   local text = html
 

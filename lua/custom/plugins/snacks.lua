@@ -6,23 +6,17 @@ return {
   keys = {
     {
       '<leader>gB',
-      function()
-        Snacks.gitbrowse()
-      end,
+      function() Snacks.gitbrowse() end,
       desc = '[B]rowse file in git remote',
     },
     {
       '<M-q>',
-      function()
-        Snacks.bufdelete()
-      end,
+      function() Snacks.bufdelete() end,
       desc = 'Delete current buffer',
     },
     {
       '<leader>.',
-      function()
-        Snacks.scratch()
-      end,
+      function() Snacks.scratch() end,
       desc = 'Toggle Scratch Buffer',
     },
   },

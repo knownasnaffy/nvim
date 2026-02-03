@@ -33,18 +33,14 @@ local function select_space(workspace_id)
       prompt_title = 'Select Space',
       finder = finders.new_table {
         results = choices,
-        entry_maker = function(entry)
-          return { value = entry.id, display = entry.display, ordinal = entry.display }
-        end,
+        entry_maker = function(entry) return { value = entry.id, display = entry.display, ordinal = entry.display } end,
       },
       sorter = conf.generic_sorter {},
       attach_mappings = function(prompt_bufnr, map)
         map('i', '<CR>', function()
           local selection = action_state.get_selected_entry()
           actions.close(prompt_bufnr)
-          if selection then
-            select_list(selection.value)
-          end
+          if selection then select_list(selection.value) end
         end)
         return true
       end,
