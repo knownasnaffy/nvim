@@ -4,6 +4,7 @@ return {
   dependencies = {
     -- Automatically install LSPs and related tools to stdpath for Neovim
     { 'mason-org/mason.nvim', opts = {} }, -- NOTE: Must be loaded before dependants
+    'mason-org/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
 
     -- Useful status updates for LSP. (Unused, using lsp-notify instead)
