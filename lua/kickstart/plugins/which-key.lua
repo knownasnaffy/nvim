@@ -126,6 +126,7 @@ return { -- Useful plugin to show you pending keybinds.
       { '<leader>s', group = '[S]earch', icon = {
         icon = '',
         color = 'green',
+        mode = { 'n', 'v' },
       } },
       { '<leader>w', group = '[W]indow Management', icon = {
         icon = '',
