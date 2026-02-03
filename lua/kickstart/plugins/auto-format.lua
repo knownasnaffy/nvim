@@ -4,6 +4,13 @@ return { -- Autoformat
     -- Utilities for creating configurations
     local util = require 'formatter.util'
 
+    local function jsonParser()
+      return {
+        exe = 'prettier',
+        args = { '--parser', 'json' },
+        stdin = true,
+      }
+    end
     -- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
     require('formatter').setup {
       -- Enable or disable logging
@@ -56,7 +63,10 @@ return { -- Autoformat
           require 'formatter.defaults.prettier',
         },
         json = {
-          require('formatter.filetypes.json').prettier,
+          jsonParser,
+        },
+        jsonc = {
+          jsonParser,
         },
         css = {
           require('formatter.filetypes.css').prettier,
