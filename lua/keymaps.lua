@@ -16,6 +16,10 @@ map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]ui
 
 -- Utility keymaps
 map('n', 'vad', 'ggVG', { desc = '[V]isual [A]round [D]ocument' })
+map('n', 'g;', function()
+  local url = vim.fn.expand '<cfile>'
+  if url ~= '' then vim.fn.jobstart({ 'xdg-open', url }, { detach = true }) end
+end, { desc = 'Open stuff under cursor' })
 
 -- Git keymaps
 require 'custom.keymaps.git'
