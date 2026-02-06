@@ -21,6 +21,9 @@ map('n', 'g;', function()
   if url ~= '' then vim.fn.jobstart({ 'xdg-open', url }, { detach = true }) end
 end, { desc = 'Open stuff under cursor' })
 
+-- Tool UI
+map('n', '<leader>ol', '<cmd>Lazy<CR>', { desc = '[O]pen [L]azy' })
+
 -- Git keymaps
 require 'custom.keymaps.git'
 
