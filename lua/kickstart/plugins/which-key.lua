@@ -94,6 +94,10 @@ return { -- Useful plugin to show you pending keybinds.
       { '<leader>w', group = '[W]indow Management', icon = {
         icon = '',
       } },
+      { '<leader>o', group = '[O]pen', icon = {
+        icon = '',
+        color = 'orange',
+      } },
       { '<leader>t', group = '[T]oggle', icon = {
         icon = '󰔡',
         color = 'yellow',
