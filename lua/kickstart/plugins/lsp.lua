@@ -3,7 +3,17 @@ return {
   'neovim/nvim-lspconfig',
   dependencies = {
     -- Automatically install LSPs and related tools to stdpath for Neovim
-    { 'mason-org/mason.nvim', opts = {} }, -- NOTE: Must be loaded before dependants
+    {
+      'mason-org/mason.nvim',
+      opts = {},
+      keys = {
+        {
+          '<leader>om',
+          '<Cmd>Mason<CR>',
+          desc = '[O]pen [M]ason',
+        },
+      },
+    }, -- NOTE: Must be loaded before dependants
     'mason-org/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
 
