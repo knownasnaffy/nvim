@@ -1,5 +1,12 @@
 return {
   'uga-rosa/ccc.nvim',
+  keys = {
+    {
+      '<leader>tc',
+      '<Cmd>CccHighlighterToggle<CR>',
+      desc = '[T]oggle [C]olor Highlighter',
+    },
+  },
   config = function()
     local ccc = require 'ccc'
     local map = vim.keymap.set
