@@ -103,6 +103,21 @@ return { -- Autoformat
             }
           end,
         },
+        qml = {
+          function()
+            -- Supports conditional formatting
+
+            -- Full specification of configurations is down below and in Vim help
+            -- files
+            return {
+              exe = 'qmlformat',
+              args = {
+                '-i',
+                util.escape_path(util.get_current_buffer_file_path()),
+              },
+            }
+          end,
+        },
         go = {
           require('formatter.filetypes.go').gofmt,
         },
