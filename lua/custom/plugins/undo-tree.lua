@@ -24,6 +24,8 @@ return {
         vim.opt_local.statuscolumn = ''
         vim.opt_local.signcolumn = 'no'
         vim.opt_local.foldcolumn = '0'
+
+        vim.keymap.set('n', '<M-r>', '<Plug>UndotreeRedo', { buffer = true, desc = 'Redo' })
       end,
     })
   end,
