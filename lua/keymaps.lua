@@ -15,7 +15,6 @@ map('n', '<M-h>', '<cmd>nohlsearch<CR>')
 map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Utility keymaps
-map('n', 'vad', 'ggVG', { desc = '[V]isual [A]round [D]ocument' })
 map('n', 'g;', function()
   local url = vim.fn.expand '<cfile>'
   if url ~= '' then vim.fn.jobstart({ 'xdg-open', url }, { detach = true }) end
