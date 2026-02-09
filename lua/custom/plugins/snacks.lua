@@ -55,6 +55,13 @@ return {
           return vim.g.snacks_indent ~= false and vim.b[buf].snacks_indent ~= false and vim.bo[buf].buftype == '' and vim.bo[buf].filetype ~= 'norg'
         end,
       },
+      scroll = {
+        animate = {
+          duration = { step = 10, total = 100 },
+          easing = 'linear',
+        },
+      },
+      scope = {},
       -- notifier = { enabled = true },
       quickfile = { enabled = true },
       -- scroll = { enabled = true },
