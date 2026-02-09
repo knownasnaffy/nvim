@@ -49,6 +49,11 @@ return {
           { section = 'keys', gap = 1, padding = 1 },
         },
       },
+      image = {
+        doc = {
+          inline = false,
+        },
+      },
       indent = {
         enabled = true,
         filter = function(buf)
