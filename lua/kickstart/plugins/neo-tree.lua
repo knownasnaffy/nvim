@@ -144,16 +144,38 @@ return {
         nowait = true,
       },
       mappings = {
-        -- ['<space>'] = {
-        --   'toggle_node',
-        --   nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
-        -- },
+        ['<space>c'] = {
+          function(state)
+            local node = state.tree:get_node()
+            local path = node.path
+
+            -- Calculate the relative path
+            local relative_path = vim.fn.fnamemodify(path, ':~:.') -- This will give you the path relative to the current working directory
+
+            -- Copy the relative path to the clipboard
+            vim.fn.system('wl-copy', relative_path)
+          end,
+          desc = 'Copy path relative to cwd',
+        },
+        ['<space>C'] = {
+          function(state)
+            local node = state.tree:get_node()
+            local path = node.path
+
+            -- Copy the path to the clipboard
+            vim.fn.system('wl-copy', path)
+          end,
+          desc = 'Copy path to cwd',
+        },
+        ['<space>n'] = {
+          'toggle_node',
+        },
         ['<2-LeftMouse>'] = 'open',
         ['<cr>'] = 'open',
         ['e'] = 'open',
         [';'] = 'open',
         ['<esc>'] = 'cancel', -- close preview or floating neo-tree window
-        ['<space>'] = { 'toggle_preview', config = { use_float = true, use_image_nvim = true } },
+        ['<space>'] = { 'toggle_preview', nowait = false, config = { use_float = true, use_image_nvim = true } },
         -- Read `# Preview Mode` for more information
         ['b'] = 'focus_preview',
         ['S'] = 'open_split',
