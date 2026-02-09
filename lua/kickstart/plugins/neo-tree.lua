@@ -204,6 +204,20 @@ return {
         ['i'] = 'show_file_details',
       },
     },
+    clipboard = {
+      sync = 'global', -- Copy from and paste to other neo-tree instances on the computer
+    },
+    nesting_rules = {
+      ['package.json'] = {
+        pattern = '^package%.json$', -- <-- Lua pattern
+        files = { 'package-lock.json', 'yarn*', 'bun.lock' }, -- <-- glob pattern
+      },
+      -- ["docker"] = {
+      --     pattern = "^dockerfile$",
+      --     ignore_case = true,
+      --     files = { ".dockerignore", "docker-compose.*", "dockerfile*" },
+      -- }
+    },
     filesystem = {
       filtered_items = {
         visible = false, -- when true, they will just be displayed differently than normal items
