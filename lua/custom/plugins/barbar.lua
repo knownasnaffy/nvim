@@ -33,6 +33,7 @@ return {
         separator_at_end = false,
         preset = nil,
       },
+      exclude_ft = { 'qf' },
     },
     version = '^1.0.0', -- optional: only update when a new 1.x version is released
   },
