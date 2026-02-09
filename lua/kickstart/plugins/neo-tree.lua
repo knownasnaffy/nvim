@@ -234,6 +234,14 @@ return {
         pattern = '^package%.json$', -- <-- Lua pattern
         files = { 'package-lock.json', 'yarn*', 'bun.lock' }, -- <-- glob pattern
       },
+      ['tsconfig.json'] = {
+        pattern = '^tsconfig%.json$',
+        files = { 'tsconfig.*.json' },
+      },
+      ['Cargo.toml'] = {
+        pattern = '^Cargo%.toml$',
+        files = { 'Cargo.lock' },
+      },
       -- ["docker"] = {
       --     pattern = "^dockerfile$",
       --     ignore_case = true,
