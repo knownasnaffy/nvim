@@ -29,6 +29,7 @@ return {
   'nvim-neo-tree/neo-tree.nvim',
   version = '*',
   dependencies = {
+    'saifulapm/neotree-file-nesting-config',
     'nvim-lua/plenary.nvim',
     'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
     'MunifTanjim/nui.nvim',
@@ -38,12 +39,18 @@ return {
     { '<M-e>', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
     { '<leader>e', ':Neotree reveal<CR>', desc = 'Open [E]xplorer', silent = true },
   },
+  config = function(_, opts)
+    -- Adding rules from plugin
+    opts.nesting_rules = require('neotree-file-nesting-config').nesting_rules
+    require('neo-tree').setup(opts)
+  end,
   opts = {
     sources = {
       'filesystem',
       'git_status',
     },
     popup_border_style = 'solid',
+    retain_hidden_root_indent = true,
     source_selector = {
       winbar = true, -- toggle to show selector on winbar
       content_layout = 'center', -- only with `tabs_layout` = "equal", "focus"
@@ -86,6 +93,11 @@ return {
       },
     },
     default_component_configs = {
+      indent = {
+        with_expanders = true,
+        expander_collapsed = '',
+        expander_expanded = '',
+      },
       modified = {
         solidsymbol = '',
         highlight = 'NeoTreeModified',
@@ -181,9 +193,10 @@ return {
             -- Copy the relative path to the clipboard
             vim.fn.system('wl-copy', relative_path)
           end,
+          nowait = false,
           desc = 'Copy path relative to cwd',
         },
-        ['<space>C'] = {
+        ['<space>ca'] = {
           function(state)
             local node = state.tree:get_node()
             local path = node.path
@@ -193,7 +206,7 @@ return {
           end,
           desc = 'Copy path to cwd',
         },
-        ['<space>n'] = {
+        ['<space>'] = {
           'toggle_node',
         },
         ['<2-LeftMouse>'] = 'open',
@@ -201,7 +214,7 @@ return {
         ['e'] = 'open',
         [';'] = 'open',
         ['<esc>'] = 'cancel', -- close preview or floating neo-tree window
-        ['<space>'] = { 'toggle_preview', nowait = false, config = { use_float = true, use_image_nvim = true } },
+        ['<space>p'] = { 'toggle_preview', nowait = false, config = { use_float = true, use_image_nvim = true } },
         -- Read `# Preview Mode` for more information
         ['b'] = 'focus_preview',
         ['S'] = 'open_split',
@@ -280,10 +293,14 @@ return {
     },
     filesystem = {
       filtered_items = {
+        show_hdden_count = false,
         visible = false, -- when true, they will just be displayed differently than normal items
         hide_dotfiles = false,
         hide_gitignored = true,
         hide_hidden = true, -- only works on Windows for hidden files/directories
+        never_show = {
+          '.DS_Store',
+        },
       },
       find_by_full_path_words = true, -- `false` means it only searches the tail of a path.
       -- `true` will change the filter into a full path
