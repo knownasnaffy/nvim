@@ -4,6 +4,27 @@ local function on_move(data)
   Snacks.rename.on_rename_file(data.source, data.destination)
 end
 
+local function getTelescopeOpts(state, path)
+  return {
+    cwd = path,
+    search_dirs = { path },
+    ---@diagnostic disable-next-line:unused-local
+    attach_mappings = function(prompt_bufnr, map)
+      local actions = require 'telescope.actions'
+      actions.select_default:replace(function()
+        actions.close(prompt_bufnr)
+        local action_state = require 'telescope.actions.state'
+        local selection = action_state.get_selected_entry()
+        local filename = selection.filename
+        if filename == nil then filename = selection[1] end
+        -- any way to open the file without triggering auto-close event of neo-tree?
+        require('neo-tree.sources.filesystem').navigate(state, state.path, filename)
+      end)
+      return true
+    end,
+  }
+end
+
 return {
   'nvim-neo-tree/neo-tree.nvim',
   version = '*',
@@ -118,7 +139,18 @@ return {
     -- A list of functions, each representing a global custom command
     -- that will be available in all sources (if not overridden in `opts[source_name].commands`)
     -- see `:h neo-tree-custom-commands-global`
-    -- commands = {},
+    commands = {
+      telescope_find = function(state)
+        local node = state.tree:get_node()
+        local path = node:get_id()
+        require('telescope.builtin').find_files(getTelescopeOpts(state, path))
+      end,
+      telescope_grep = function(state)
+        local node = state.tree:get_node()
+        local path = node:get_id()
+        require('telescope.builtin').live_grep(getTelescopeOpts(state, path))
+      end,
+    },
     window = {
       position = 'float',
       popup = { -- settings that apply to float position only
@@ -136,6 +168,8 @@ return {
         nowait = true,
       },
       mappings = {
+        ['tf'] = 'telescope_find',
+        ['tg'] = 'telescope_grep',
         ['<space>c'] = {
           function(state)
             local node = state.tree:get_node()
@@ -223,6 +257,10 @@ return {
     },
     nesting_rules = {
       ['package.json'] = {
+        pattern = '^package%.json$', -- <-- Lua pattern
+        files = { 'package-lock.json', 'yarn*', 'bun.lock' }, -- <-- glob pattern
+      },
+      ['.gitignore'] = {
         pattern = '^package%.json$', -- <-- Lua pattern
         files = { 'package-lock.json', 'yarn*', 'bun.lock' }, -- <-- glob pattern
       },
