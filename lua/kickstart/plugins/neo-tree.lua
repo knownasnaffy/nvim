@@ -266,7 +266,7 @@ return {
       },
     },
     clipboard = {
-      sync = 'global', -- Copy from and paste to other neo-tree instances on the computer
+      sync = 'universal', -- Copy from and paste to other neo-tree instances on the computer
     },
     nesting_rules = {
       ['package.json'] = {
