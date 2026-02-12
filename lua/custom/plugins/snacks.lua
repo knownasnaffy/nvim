@@ -19,6 +19,11 @@ return {
       function() Snacks.scratch() end,
       desc = 'Toggle Scratch Buffer',
     },
+    {
+      '<leader>oi',
+      function() Snacks.image.hover() end,
+      desc = 'Hover [O]ver the [I]mage the cursor is at',
+    },
   },
   config = function()
     require('snacks').setup {
@@ -52,6 +57,7 @@ return {
       image = {
         doc = {
           inline = false,
+          float = false,
         },
       },
       indent = {
