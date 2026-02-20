@@ -44,7 +44,8 @@ return { -- Statusline and Tabline
 
               return prefix .. str
             end,
-            padding = { left = 2, right = 2 },
+            separator = { left = '' },
+            padding = { left = 1, right = 2 },
           },
         },
         lualine_b = {
@@ -105,7 +106,7 @@ return { -- Statusline and Tabline
         },
         lualine_y = { { 'progress', icon = '󰦕', padding = { left = 2, right = 1 } } },
         -- <line number>:<column number>
-        lualine_z = { { '%l:%c', icon = '', padding = { left = 2, right = 2 } } },
+        lualine_z = { { '%l:%c', icon = '', padding = { left = 2, right = 1 }, separator = { right = '' } } },
       },
       inactive_sections = {
         lualine_a = {},
