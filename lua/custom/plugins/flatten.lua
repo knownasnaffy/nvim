@@ -10,6 +10,8 @@ return {
         open = 'alternate',
       },
       hooks = {
+        -- `hooks.should_nest``fun(host: channel): boolean`
+        should_nest = require('flatten').hooks.should_nest,
         should_block = function(argv)
           -- Note that argv contains all the parts of the CLI command, including
           -- Neovim's path, commands, options and files.
@@ -19,11 +21,6 @@ return {
           -- This allows you to use `nvim -b file1` instead of
           -- `nvim --cmd 'let g:flatten_wait=1' file1`
           return vim.tbl_contains(argv, '-b')
-            or vim.tbl_contains(argv, '/etc')
-            or vim.tbl_contains(argv, '/var')
-            or vim.tbl_contains(argv, '/usr')
-            or vim.tbl_contains(argv, '/bin')
-            or vim.tbl_contains(argv, '/boot')
 
           -- Alternatively, we can block if we find the diff-mode option
           -- return vim.tbl_contains(argv, "-d")
@@ -39,6 +36,7 @@ return {
 
           -- If the file is a git commit, create one-shot autocmd to delete its buffer on write
           -- If you just want the toggleable terminal integration, ignore this bit
+          -- FIX: Doesn't work for some reason
           if ft == 'gitcommit' or ft == 'gitrebase' then
             vim.api.nvim_create_autocmd('BufWritePost', {
               buffer = bufnr,
