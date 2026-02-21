@@ -83,6 +83,10 @@ return { -- Statusline and Tabline
         },
         lualine_x = {
           {
+            '%{&ft == "toggleterm" ? " ".b:toggle_number : ""}',
+            color = { fg = '#b4f9f8' },
+          },
+          {
             'searchcount',
             icon = '',
             color = { fg = '#e0af68' },
