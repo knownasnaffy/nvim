@@ -39,6 +39,10 @@ return {
           -- Needed to add the spacing between colons and letters manually
           -- This weird looking thing is the result of trying to fight trailing space vs centered layout
           header = [[
+
+
+
+
   ██████   █████    ███████    █████ █████
 ░░██████ ░░███   ███░░░░░███ ░░███ ░░███
  ░███░███ ░███  ███     ░░███ ░░███ ███
@@ -49,9 +53,13 @@ return {
 ░░░░░    ░░░░░    ░░░░░░░    ░░░░░ ░░░░░
 ]],
         },
+        formats = {
+          key = function(item) return { { '[', hl = 'special' }, { item.key, hl = 'key' }, { ']', hl = 'special' } } end,
+        },
         sections = {
-          { section = 'header' },
-          { section = 'keys', gap = 1, padding = 1 },
+          { section = 'header', pane = 2 },
+          { section = 'keys', gap = 1, padding = 3, height = 23 },
+          { section = 'terminal', cmd = 'asciiquarium', padding = 0, height = 18, width = 200, pane = 3 },
         },
       },
       image = {
