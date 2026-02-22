@@ -6,12 +6,12 @@
 
 My Neovim configuration that I use daily. It's opinionated, modular, and probably has some weird keybinds you won't like. But hey, it works for me.
 
-Also, I use `jkl;` for navigation instead of `hjkl` because my keyboard layout makes more sense that way. Fight me.
+Also, I use `jkl;` for navigation instead of `hjkl`.
 
 ## Features
 
 ### Core IDE Stuff
-- **LSP**: Full language server support with auto-completion, diagnostics, and all that jazz
+- **LSP**: Auto-completion, diagnostics, keywords, renaming, etc.
 - **Treesitter**, **Auto-formatting**, **~Linting~** - I don't use this much, **~Debugging (DAP)~** - What even is this?
 - **Fuzzy finding**: Telescope for finding literally anything
 - **File explorer**: Neo-tree because of customizations and integrations with other plugins
@@ -22,17 +22,18 @@ Also, I use `jkl;` for navigation instead of `hjkl` because my keyboard layout m
 - **Gitsigns**: Git hunk navigation and management
 
 ### Development Tools
-- **REST client**: For testing APIs without leaving Neovim (rest.nvim)
-- **HTTP codes lookup**: Because who actually remembers what 418 means? (I just vibe-coded this)
+- **REST client**: For testing APIs (rest.nvim)
+- **HTTP codes lookup**: Do u remembers what 418 means? (I just vibe-coded this)
 - **Package info**: npm package version info inline
 - **Terminal**: ToggleTerm for a decent shell integration
 - **Copilot**: The only good AI pair programmer available at the moment when I last checked, I know avante and others exist now. Will check them out someday.
 
-### Note-taking & Documentation
+### Documentation & PIM
 - **Neorg**: Org-mode but for Neovim
 - **SnipRun**: Execute code blocks in your notes
 - **Markdown preview**: See your markdown rendered live
 - **Clipboard images**: Paste images directly into markdown
+- **Himalaya**: Email client
 
 ### Navigation & Movement
 - **Leap**: Jump anywhere with minimal keystrokes
