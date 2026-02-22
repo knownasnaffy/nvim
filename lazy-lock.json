@@ -15,7 +15,6 @@
   "gitsigns.nvim": { "branch": "main", "commit": "1ce96a464fdbc24208e24c117e2021794259005d" },
   "guess-indent.nvim": { "branch": "main", "commit": "84a4987ff36798c2fc1169cbaff67960aed9776f" },
   "hererocks": { "branch": "master", "commit": "3856f1b4fb69a9f683f1eb146a4cd49a67478419" },
-  "himalaya-vim": { "branch": "master", "commit": "c896be12f85347d255e3e0a6795dbfbc8282ba8e" },
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
   "lazydev.nvim": { "branch": "main", "commit": "5231c62aa83c2f8dc8e7ba957aa77098cda1257d" },
   "leap.nvim": { "branch": "main", "commit": "9a26da7a14c09cd84c05a4e8326890ef0f92a590" },

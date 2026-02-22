@@ -14,6 +14,11 @@ require('lazy').setup({
   -- Plugins added on my own
   { import = 'custom.plugins' },
 }, {
+  dev = {
+    ---@type string | fun(plugin: LazyPlugin): string
+    path = '~/code/projects/nvim-plugins',
+    fallback = false, -- Fallback to git when local plugin doesn't exist
+  },
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
     -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
