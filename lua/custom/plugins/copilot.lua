@@ -1,7 +1,8 @@
 return {
   'zbirenbaum/copilot.lua',
   cmd = 'Copilot',
-  event = 'InsertEnter',
+  -- I dont want this running every time I open a file, so I will trigger it manually when I need it
+  -- event = 'InsertEnter',
   config = function()
     local copilot = require 'copilot'
 
