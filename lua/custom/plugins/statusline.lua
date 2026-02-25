@@ -66,7 +66,7 @@ return { -- Statusline and Tabline
         lualine_b = {
           {
             'FugitiveHead',
-            icon = '󰘬',
+            icon = ' 󰘬',
             {
               padding = { left = 2, right = 2 },
             },
@@ -129,7 +129,7 @@ return { -- Statusline and Tabline
             padding = { left = 1, right = 1 },
           },
         },
-        lualine_y = { { 'progress', icon = '󰦕', padding = { left = 2, right = 1 } } },
+        lualine_y = { { 'progress', icon = '󰦕', padding = { left = 2, right = 2 } } },
         -- <line number>:<column number>
         lualine_z = { { '%l:%c', icon = '', padding = { left = 2, right = 1 }, separator = { right = '' } } },
       },
