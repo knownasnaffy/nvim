@@ -1,6 +1,21 @@
 return { -- Statusline and Tabline
   'nvim-lualine/lualine.nvim',
-  dependencies = { 'nvim-tree/nvim-web-devicons', { 'AndreM222/copilot-lualine' } },
+  dependencies = {
+    'nvim-tree/nvim-web-devicons',
+    { 'AndreM222/copilot-lualine' },
+    {
+      'linrongbin16/lsp-progress.nvim',
+      config = function()
+        require('lsp-progress').setup {}
+        vim.api.nvim_create_augroup('lualine_augroup', { clear = true })
+        vim.api.nvim_create_autocmd('User', {
+          group = 'lualine_augroup',
+          pattern = 'LspProgressStatusUpdated',
+          callback = function() require('lualine').refresh { trigger = 'autocmd' } end,
+        })
+      end,
+    },
+  },
   config = function()
     local statusline_theme = require 'lualine.themes.auto'
 
@@ -73,12 +88,18 @@ return { -- Statusline and Tabline
             shorting_target = 40, -- Shortens path to leave 40 spaces in the window
             -- for other components. (terrible name, any suggestions?)
             symbols = {
-              modified = '', -- Text to show when the file is modified.
-              readonly = ' ', -- Text to show when the file is non-modifiable or readonly.
-              unnamed = '[Unsaved]', -- Text to show for unnamed buffers.
-              newfile = '[New]', -- Text to show for newly created file before first write
+              modified = '', -- Text to show when the file is modified.
+              readonly = '', -- Text to show when the file is non-modifiable or readonly.
+              unnamed = '', -- Text to show for unnamed buffers.
+              newfile = '', -- Text to show for newly created file before first write
             },
-            padding = { left = 1, right = 2 },
+            padding = { left = 1, right = 1 },
+          },
+          {
+            function()
+              -- invoke `progress` here.
+              return require('lsp-progress').progress()
+            end,
           },
         },
         lualine_x = {

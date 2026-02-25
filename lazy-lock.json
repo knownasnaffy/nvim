@@ -18,6 +18,7 @@
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
   "lazydev.nvim": { "branch": "main", "commit": "5231c62aa83c2f8dc8e7ba957aa77098cda1257d" },
   "leap.nvim": { "branch": "main", "commit": "9a26da7a14c09cd84c05a4e8326890ef0f92a590" },
+  "lsp-progress.nvim": { "branch": "main", "commit": "f6d5af10563b895ff846346f57cbd4451439f4c1" },
   "lsp-toggle.nvim": { "branch": "master", "commit": "6eb2811eea333c73754e57679c3736e803ff9f6e" },
   "lua-utils.nvim": { "branch": "main", "commit": "e565749421f4bbb5d2e85e37c3cef9d56553d8bd" },
   "lualine.nvim": { "branch": "master", "commit": "47f91c416daef12db467145e16bed5bbfe00add8" },
