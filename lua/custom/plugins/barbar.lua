@@ -10,6 +10,7 @@ return {
       -- animation = true,
       -- insert_at_start = true,
       -- …etc.
+      auto_hide = 0,
       animation = false,
       highlight_visible = true,
       icons = {
