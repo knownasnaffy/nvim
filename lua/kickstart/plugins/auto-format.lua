@@ -140,5 +140,6 @@ return { -- Autoformat
       },
     }
     vim.keymap.set('n', '<M-s>', '<Cmd>w | FormatWrite<CR>', { desc = '[F]ormat buffer' })
+    vim.keymap.set('n', '<M-S>', '<Cmd>w<CR>', { desc = '[S]ave buffer' })
   end,
 }
