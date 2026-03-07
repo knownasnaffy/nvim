@@ -12,6 +12,7 @@ return {
         ['s'] = 'folder_picker',
         ['r'] = function() require('himalaya.folder').reload() end,
         ['gr'] = 'none',
+        ['q'] = 'close',
       },
     },
   },
