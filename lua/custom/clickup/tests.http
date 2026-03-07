@@ -1,3 +1,0 @@
-### Get user workspaces
-GET {{API_URL}}/team
-Authorization: {{ACCESS_TOKEN}}
