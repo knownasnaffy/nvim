@@ -6,7 +6,7 @@ return {
   keys = {
     {
       '<leader>st',
-      ':TodoTelescope<CR>',
+      function() Snacks.picker.todo_comments() end,
       desc = '[S]earch [T]odos',
     },
   },

@@ -4,7 +4,7 @@ return {
   -- enabled = false,
   dependencies = {
     { 'nvim-lua/plenary.nvim' },
-    { 'nvim-neorg/neorg-telescope' },
+    -- { 'nvim-neorg/neorg-telescope' },
     {
       'michaelb/sniprun',
       branch = 'master',
@@ -49,7 +49,7 @@ return {
             author = 'Barinderpreet Singh',
           },
         },
-        ['core.integrations.telescope'] = {},
+        -- ['core.integrations.telescope'] = {},
       },
     }
 
@@ -60,7 +60,7 @@ return {
         vim.opt_local.concealcursor = 'n'
         map('n', '<leader>nt', '<Cmd>Neorg toc<CR>', { desc = 'Open [T]OC' })
         map('n', '<M-Space>', '<Plug>(neorg.qol.todo-items.todo.task-cycle)')
-        map('i', '<M-Space>', '<Cmd>Telescope neorg insert_link<CR>')
+        -- map('i', '<M-Space>', '<Cmd>Telescope neorg insert_link<CR>')
       end,
     })
 
