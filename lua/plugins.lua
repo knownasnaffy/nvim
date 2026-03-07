@@ -45,8 +45,5 @@ require('lazy').setup({
   },
 })
 
--- Load clickup feature
-require 'custom.clickup'
-
 -- Load other features
 require 'custom.features.editorconfig'
