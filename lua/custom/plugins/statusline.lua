@@ -3,18 +3,6 @@ return { -- Statusline and Tabline
   dependencies = {
     'nvim-tree/nvim-web-devicons',
     { 'AndreM222/copilot-lualine' },
-    {
-      'linrongbin16/lsp-progress.nvim',
-      config = function()
-        require('lsp-progress').setup {}
-        vim.api.nvim_create_augroup('lualine_augroup', { clear = true })
-        vim.api.nvim_create_autocmd('User', {
-          group = 'lualine_augroup',
-          pattern = 'LspProgressStatusUpdated',
-          callback = function() require('lualine').refresh { trigger = 'autocmd' } end,
-        })
-      end,
-    },
   },
   config = function()
     local statusline_theme = require 'lualine.themes.auto'
@@ -30,6 +18,7 @@ return { -- Statusline and Tabline
         section_separators = { left = ' ', right = ' ' },
         component_separators = { left = '', right = '' },
         theme = statusline_theme,
+        globalstatus = true,
         disabled_filetypes = { -- Filetypes to disable lualine for.
           statusline = {
             'neo-tree',
@@ -96,16 +85,19 @@ return { -- Statusline and Tabline
             padding = { left = 1, right = 1 },
           },
           {
-            function()
-              -- invoke `progress` here.
-              return require('lsp-progress').progress()
-            end,
+            'lsp_status',
           },
         },
         lualine_x = {
           {
             '%{&ft == "toggleterm" ? " ".b:toggle_number : ""}',
-            color = { fg = '#b4f9f8' },
+            color = { fg = '#73daca' },
+          },
+          {
+            'selectioncount',
+            icon = '󰒉',
+            color = { fg = '#9ece6a' },
+            padding = { left = 2, right = 1 },
           },
           {
             'searchcount',
