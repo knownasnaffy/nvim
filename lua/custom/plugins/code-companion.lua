@@ -17,21 +17,29 @@ return {
   lazy = false,
   opts = {
     display = { action_palette = { provider = 'snacks' } },
+    adapters = {
+      http = {
+        ollama = function()
+          return require('codecompanion.adapters').extend('ollama', {
+            schema = {
+              model = {
+                default = 'qwen2.5-coder:7b-instruct-q5_K_M',
+              },
+            },
+          })
+        end,
+      },
+    },
     interactions = {
       chat = {
-        -- You can specify an adapter by name and model (both ACP and HTTP)
         adapter = {
           name = 'kiro',
-          -- model = 'gpt-4.1',
         },
       },
-      -- Or, just specify the adapter by name
       inline = {
-        adapter = 'gemini_cli',
+        adapter = 'ollama',
+        -- model = 'qwen2.5-coder:7b-instruct-q5_K_M',
       },
-      -- cmd = {
-      --   adapter = 'kiro-cli',
-      -- },
     },
     -- NOTE: The log_level is in `opts.opts`
     opts = {
