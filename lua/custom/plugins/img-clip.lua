@@ -9,6 +9,9 @@ return {
         use_absolute_path = true,
       },
     },
+    default = {
+      verbose = false,
+    },
   },
   keys = {
     -- suggested keymap
