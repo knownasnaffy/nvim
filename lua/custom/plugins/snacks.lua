@@ -85,14 +85,13 @@ return {
   },
   config = function()
     require('snacks').setup {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-      -- prompt = '   ',
       picker = {
         ui_select = true,
         sources = {
           files = {
+            hidden = true,
+          },
+          grep = {
             hidden = true,
           },
         },
