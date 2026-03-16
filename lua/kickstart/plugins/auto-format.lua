@@ -12,6 +12,7 @@ return {
 
     conform.setup {
       formatters_by_ft = {
+        astro = { 'prettier' },
         lua = { 'stylua' },
 
         javascript = { 'prettier' },
@@ -46,7 +47,7 @@ return {
       },
 
       format_on_save = {
-        timeout_ms = 500,
+        timeout_ms = 1000,
         lsp_format = 'fallback',
       },
     }
