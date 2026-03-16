@@ -76,7 +76,7 @@ return {
       end,
       desc = 'Git [B]ranches',
     },
-    { '<leader>gl', function() Snacks.picker.git_log { layout = { hidden = { 'preview' } } } end, desc = 'Git [L]og' },
+    -- { '<leader>gl', function() Snacks.picker.git_log { layout = { hidden = { 'preview' } } } end, desc = 'Git [L]og' },
     { '<leader>gL', function() Snacks.picker.git_log_line() end, desc = 'Git Log [L]ine' },
     { '<leader>ge', function() Snacks.picker.git_status() end, desc = 'Git [S]tatus' },
     { '<leader>gs', function() Snacks.picker.git_stash() end, desc = 'Git [S]tash' },

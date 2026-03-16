@@ -84,3 +84,5 @@ map('n', '<leader>gd', function()
     end
   end)
 end, { desc = 'Git [D]iscard changes in current file' })
+
+map('n', '<leader>gl', function() vim.cmd 'Flogsplit -date=relative -auto-update -all' end, { desc = 'Git [L]og (compact)' })
