@@ -19,6 +19,11 @@ map('n', '<leader>gC', function()
   print 'Amended last commit (without changing message).'
 end, { desc = 'Git [C]ommit amend last' })
 
+map('n', '<leader>gF', function()
+  vim.cmd 'G fetch'
+  print 'Fetched from default remote'
+end, { desc = 'Git [F]etch' })
+
 -- Staging Files
 map('n', '<leader>ga', function()
   vim.cmd 'silent! G add %'
