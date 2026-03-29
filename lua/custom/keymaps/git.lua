@@ -19,11 +19,6 @@ map('n', '<leader>gC', function()
   print 'Amended last commit (without changing message).'
 end, { desc = 'Git [C]ommit amend last' })
 
-map('n', '<leader>gF', function()
-  vim.cmd 'G fetch'
-  print 'Fetched from default remote'
-end, { desc = 'Git [F]etch' })
-
 -- Staging Files
 map('n', '<leader>ga', function()
   vim.cmd 'silent! G add %'
@@ -72,6 +67,22 @@ map('n', '<leader>gP', function()
     end
   end)
 end, { desc = 'Git [P]ull changes from remote' })
+
+map('n', '<leader>gF', function()
+  local git_root = vim.fn.FugitiveWorkTree() -- Get the Git root directory
+  if git_root == '' then
+    print 'Not in a Git repository'
+    return
+  end
+
+  vim.system({ 'git', 'fetch' }, { cwd = git_root, text = true }, function(obj)
+    if obj.code == 0 then
+      print 'Fetched changes from remote.'
+    else
+      print('Git fetch failed: ' .. obj.stderr)
+    end
+  end)
+end, { desc = 'Git [F]etch changes from remote' })
 
 -- Merge Conflict Navigation
 map('n', ']x', '/^<<<<<<<\\|=======\\|>>>>>>>\\n', { desc = 'Next merge conflict' })
