@@ -263,7 +263,11 @@ return {
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
-    for name, server in pairs(servers) do
+    local ensure_enabled = vim.tbl_deep_extend('force', servers, {
+      dartls = {},
+    })
+
+    for name, server in pairs(ensure_enabled) do
       server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
       vim.lsp.config(name, server)
       vim.lsp.enable(name)
