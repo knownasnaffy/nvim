@@ -14,6 +14,9 @@ map('n', '<M-h>', '<cmd>nohlsearch<CR>')
 -- Diagnostic keymaps
 map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
+-- Documentation
+map({ 'n', 'x' }, 'H', 'K')
+
 -- Utility keymaps
 map('n', 'g;', function()
   local url = vim.fn.expand '<cfile>'
